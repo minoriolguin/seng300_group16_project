@@ -1,0 +1,40 @@
+package com.thelocalmarketplace.software;
+
+import com.thelocalmarketplace.hardware.SelfCheckoutStation;
+
+import powerutility.PowerGrid;
+
+public class Session {
+	SelfCheckoutStation selfCheckoutStation;
+	private Start start = new Start(false);
+	private boolean activated;
+	
+	public void isActiveSession() {
+		activated = start.isSessionStarted();
+	}
+	
+	public void setSession() {
+		activated = start.isSessionStarted();
+	}
+	
+	public boolean getSession() {
+		return this.activated;	
+	}
+	
+	public static void main(String[] args) {
+		
+		boolean start = false;
+		Session sessionStarted = new Session();
+
+		if (sessionStarted.getSession() == true) {
+			System.out.println("A session has already been started, the system cannot start a new session "
+					+ "while in an active session.");
+		}
+		else {
+			sessionStarted.setSession();
+			System.out.println("Successfully started a session.");
+		}
+		
+	}
+	
+}
