@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
 
+import com.jjjwelectronics.Mass;
 import com.jjjwelectronics.Numeral;
 import com.jjjwelectronics.OverloadedDevice;
 import com.jjjwelectronics.scanner.Barcode;
@@ -28,45 +29,50 @@ import powerutility.PowerGrid;
  * */
 
 public class SessionSimulation {
-	
+
 	private static SelfCheckoutStation selfCheckoutStation;
-	
+
 	private static SessionSimulation sessionSimulation;
-//	sessionSimulation.setUpSessionSimulation();
-	
+	//	sessionSimulation.setUpSessionSimulation();
+
 	private static LocalMarketPlaceDatabase database;
 
-//	public SessionSimulation() {
-//		
-//	}
-//	
-//	 Sets up selfCheckoutStation for the Session Simulation
-//	 public void setUpSessionSimulation() {
-//		selfCheckoutStation.plugIn(PowerGrid.instance());
-//	    selfCheckoutStation.turnOn();
-//	 }
-	  
-	 public void promptEnterToContinue(){
-			
-		 System.out.println("Welcome!");
-		 System.out.println("Press \"ENTER\" to continue");
-		 try {
-			 System.in.read();
-		 } catch (IOException e) {
-		     e.printStackTrace();
-		 }
-	 }
-	 
-	private void printMenu() {
-			System.out.print("Choose option:\n"
-					+ "\t1. Add Item\n"
-					+ "\t2. Pay via Coin\n"
-					+ "Choice: ");
+	//	public SessionSimulation() {
+	//		
+	//	}
+	//	
+	//	 Sets up selfCheckoutStation for the Session Simulation
+	//	 public void setUpSessionSimulation() {
+	//		selfCheckoutStation.plugIn(PowerGrid.instance());
+	//	    selfCheckoutStation.turnOn();
+	//	 }
+
+	public void promptEnterToContinue(){
+
+		System.out.println("Welcome!");
+		System.out.println("Press \"ENTER\" to continue");
+		try {
+			System.in.read();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-	
+
+	private void printMenu() {
+		System.out.print("Choose option:\n"
+				+ "\t1. Add Item\n"
+				+ "\t2. Pay via Coin\n"
+				//						3. Attendant
+				+ "Choice: ");
+	}
+
+	//	printAttendantMenu() {
+	//		Heres all the blocks
+	//	}
+
 	private void setupDatabase() {
 		database = new LocalMarketPlaceDatabase();
-		
+
 		Barcode milkBarcode = new Barcode(new Numeral[] {Numeral.one, Numeral.two, Numeral.three, Numeral.four, Numeral.five});
 		Barcode juiceBarcode = new Barcode(new Numeral[] {Numeral.two, Numeral.three, Numeral.four, Numeral.five, Numeral.one});
 		Barcode breadBarcode = new Barcode( new Numeral[] {Numeral.three, Numeral.four, Numeral.five, Numeral.one, Numeral.two});
@@ -78,73 +84,84 @@ public class SessionSimulation {
 		final BarcodedProduct bread = new BarcodedProduct(breadBarcode, "Whole Wheat Sliced Bread", 3L, 675.00);
 		final BarcodedProduct eggs = new BarcodedProduct(eggsBarcode, "Large Eggs, 12 Count", 4L, 699.00);
 		final BarcodedProduct canOfBeans = new BarcodedProduct(canOfBeansBarcode, "Dark Red Kidney Beans, 540mL", 2L, 423.00);
-			
+
 		database.addBarcodedProductToDatabase(milk);
 		database.addBarcodedProductToDatabase(juice);
 		database.addBarcodedProductToDatabase(bread);
 		database.addBarcodedProductToDatabase(eggs);
 		database.addBarcodedProductToDatabase(canOfBeans);
-		
-//		 for (Map.Entry<Barcode, BarcodedProduct> entry : database.BARCODED_PRODUCT_DATABASE.entrySet())  
-//	            System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue()); 
-		
+
+		//		 for (Map.Entry<Barcode, BarcodedProduct> entry : database.BARCODED_PRODUCT_DATABASE.entrySet())  
+		//	            System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue()); 
+
 		database.addBarcodedProductToInventory(milk, 25);
 		database.addBarcodedProductToInventory(juice, 12);
 		database.addBarcodedProductToInventory(bread, 35);
 		database.addBarcodedProductToInventory(eggs, 44);
 		database.addBarcodedProductToInventory(canOfBeans, 75);
 	}
-	
+
 
 	public static void main(String[] args) {
-		
+
 		sessionSimulation = new SessionSimulation();
 		selfCheckoutStation = new SelfCheckoutStation();
-		
+
 		sessionSimulation.setupDatabase();
-		
-//		sessionSimulation.setUpSessionSimulation();
-		
+
+		//		sessionSimulation.setUpSessionSimulation();
+
 		boolean sessionStart = false;
 		StartSession sessionStarted = new StartSession(sessionStart);
-		
+
 		Scanner scanner = new Scanner(System.in);		
-		
+
 		if (sessionStarted.getSessionStarted() == true) {
 			System.out.println("A session has already been started, the system cannot start a new session "
-								+ "while in an active session.");
-			}
+					+ "while in an active session.");
+		}
 		else {
 			sessionSimulation.promptEnterToContinue();
 			sessionStarted.setSessionStarted(sessionStart);
 			System.out.println("Successfully started a session.");
-			}
-		
+		}
+
 		//Ready for more commands from customer
-		
+
 		sessionSimulation.printMenu();
 		int choice = scanner.nextInt();
-		
+
 		while(choice != -1) {
+			/*
+			 * Weight discrepency at the top of this to stop any more execution?? maybe somewhere else to allow some 
+			 * menu items to execute
+			 */
 			switch(choice) {
 			case 1:
 				System.out.println("Enter barcode to add: ");
-				BigDecimal num = scanner.nextBigDecimal();
-//				
-				Barcode barcode = new Barcode(new Numeral[] {Numeral.one, Numeral.two, Numeral.three, Numeral.four, Numeral.five});
-//				
-//				scan(product);
-//				if(database.INVENTORY.containsKey(barcode)) {
-//					System.out.println("Valid Barcode");
-//				} else {
-//					System.out.println("Invalid Barcode");
-//				}
+				BigDecimal barcodeInput = scanner.nextBigDecimal();
 
-				AddItemByBarcodeScan abs = new AddItemByBarcodeScan();
-				
-				abs.Scan(barcode, 10, selfCheckoutStation);
-				
-//				selfCheckoutStation.baggingArea.addAnItem(item1);
+				System.out.println("You entered: " + barcodeInput);
+				String barcodeInputString = barcodeInput.toString();
+
+				int i = 0;
+				Numeral[] barcodeNumeral = new Numeral[barcodeInputString.length()];
+				for(char c : barcodeInputString.toCharArray()) {
+					barcodeNumeral[i] = Numeral.valueOf(Byte.valueOf(String.valueOf(c)));
+					i++;
+				}
+
+				Barcode barcode = new Barcode(barcodeNumeral);
+				sessionSimulation.scan(barcode);
+
+				//				if(database.INVENTORY.containsKey(barcode)) {
+				//					System.out.println("Valid Barcode");
+				//				} else {
+				//					System.out.println("Invalid Barcode");
+				//				}
+
+
+				//				selfCheckoutStation.baggingArea.addAnItem(item1);
 
 				break;
 			case 2:
@@ -166,50 +183,54 @@ public class SessionSimulation {
 					denom = scanner.nextBigDecimal();
 				}
 				break;
+			case -1:
+				System.out.println("Exiting System");
 			}
 			choice = scanner.nextInt();
 		}
-		
+
 		scanner.close();
 	}
-	
-	
-public boolean Scan(Barcode barcode,long mass,SelfCheckoutStation station) {            
+
+
+	public boolean scan(Barcode barcode) {
 		if(barcode == null) {
 			throw new NullPointerException("No argument may be null.");
 		}
-		if(mass <= 0.0) {
-			throw new IllegalArgumentException("The weight of the item should be greater than 0.0.");
-		}
-		if(database.BARCODED_PRODUCT_DATABASE.containsKey(barcode)) {
-			station.scanner.disable(); //  System: Blocks the self-checkout station from further customer interaction.
-			int inventoryLeft = database.INVENTORY.get(barcode); 
+		//		if(mass <= 0.0) {
+		//			throw new IllegalArgumentException("The weight of the item should be greater than 0.0.");
+		//		}
+		
+		BarcodedProduct scannedProduct = database.BARCODED_PRODUCT_DATABASE.get(barcode);
+		
+//		if(database.BARCODED_PRODUCT_DATABASE.containsKey(barcode)) {
+		if(scannedProduct != null) {
+			selfCheckoutStation.scanner.disable(); //  System: Blocks the self-checkout station from further customer interaction.
+		
+			int inventoryLeft = database.INVENTORY.get(scannedProduct); 
 			if(inventoryLeft == 0) {
 				return false;
 			} else {
-				BarcodedProduct p = database.BARCODED_PRODUCT_DATABASE.get(barcode);
-				
-				BarcodedItem i = new BarcodedItem(p.getBarcode(), null);
-				
-				station.baggingArea.addAnItem(i);
-				
+//				BarcodedProduct p = database.BARCODED_PRODUCT_DATABASE.get(barcode);
+
+				BarcodedItem scannedItem = new BarcodedItem(scannedProduct.getBarcode(), new Mass(scannedProduct.getExpectedWeight()));
+
+				selfCheckoutStation.baggingArea.addAnItem(scannedItem);
+
 				try {
-					System.out.println("\tBaggingArea weight: " + station.baggingArea.getCurrentMassOnTheScale());
+					System.out.println("\tBaggingArea weight: " + selfCheckoutStation.baggingArea.getCurrentMassOnTheScale());
 				} catch (OverloadedDevice e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
-				station.scanner.scan(i);
-				
+
+				selfCheckoutStation.scanner.scan(scannedItem);
+
 			}
-			
+			selfCheckoutStation.scanner.enable();
 		} else {
-			System.out.println("no has");
 			return false;
 		}
 		return false;
-		
+
 	}
-	
 }
