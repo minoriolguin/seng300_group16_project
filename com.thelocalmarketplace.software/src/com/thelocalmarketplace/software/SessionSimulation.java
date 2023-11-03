@@ -15,6 +15,7 @@ import com.thelocalmarketplace.hardware.BarcodedProduct;
 import com.thelocalmarketplace.hardware.SelfCheckoutStation;
 
 import powerutility.PowerGrid;
+import powerutility.PowerSurge;
 
 /*
  * SessionSimulation class contains the main method
@@ -59,7 +60,7 @@ public class SessionSimulation {
 	}
 
 	private void printMenu() {
-		System.out.print("Choose option:\n"
+		System.out.print("\nChoose option:\n"
 				+ "\t1. Add Item\n"
 				+ "\t2. Pay via Coin\n"
 				//						3. Attendant
@@ -105,7 +106,11 @@ public class SessionSimulation {
 	public static void main(String[] args) {
 
 		sessionSimulation = new SessionSimulation();
+		
+		SelfCheckoutStation.configureCoinDenominations(new BigDecimal[] {new BigDecimal("0.05"), new BigDecimal("0.10"), new BigDecimal("0.25"), new BigDecimal("1"), new BigDecimal("2")});
 		selfCheckoutStation = new SelfCheckoutStation();
+		selfCheckoutStation.plugIn(PowerGrid.instance());
+		selfCheckoutStation.turnOn();
 
 		sessionSimulation.setupDatabase();
 
@@ -131,14 +136,15 @@ public class SessionSimulation {
 		sessionSimulation.printMenu();
 		int choice = scanner.nextInt();
 
-		while(choice != -1) {
+		boolean loop = true;
+		while(loop) {
 			/*
 			 * Weight discrepency at the top of this to stop any more execution?? maybe somewhere else to allow some 
 			 * menu items to execute
 			 */
 			switch(choice) {
 			case 1:
-				System.out.println("Enter barcode to add: ");
+				System.out.print("Enter barcode to add: ");
 				BigDecimal barcodeInput = scanner.nextBigDecimal();
 
 				System.out.println("You entered: " + barcodeInput);
@@ -165,46 +171,59 @@ public class SessionSimulation {
 
 				break;
 			case 2:
+//				if(amountDue != 0) { //SHOULD SAY NO NEED TO PAY NOTHING TO PAY, could also make a dynamic menu that doesnt have pay option if no amount due
 				ArrayList<BigDecimal> denoms = (ArrayList<BigDecimal>) selfCheckoutStation.coinDenominations;
-				System.out.println("Choose denomination of coin being inserted:");
-				for(BigDecimal denom : denoms) {
-					System.out.println("\t" + denom);
-				}
+				
+//				System.out.println("Choose denomination of coin being inserted:");
+//				for(BigDecimal denom : denoms) {
+//					System.out.println("\t" + denom);
+//				}
+				
+				System.out.print("Enter Denomination of Coin: ");
 				BigDecimal denom = scanner.nextBigDecimal();
 
-				int amountDue = 1;
-				while(denom != new BigDecimal("-1") && amountDue > 0) {
+				BigDecimal amountDue = new BigDecimal("1"); //HARD CODED
+				while(denom != new BigDecimal("-1") && amountDue.compareTo(BigDecimal.ZERO) > 0) {
 					if(denoms.contains(denom)) {
-						System.out.println("valid denom");
-						amountDue -= denom.intValue();
+						amountDue = amountDue.subtract(denom);
+						if(amountDue.compareTo(BigDecimal.ZERO) <= 0) {
+							System.out.println("Valid Decomination, amount due fully paid");
+							continue;
+						} else {
+							System.out.println("Valid Denomination, due amount now " + amountDue);
+						}
 					} else {
 						System.out.println("Invalid Denomination amount, please try again");
 					}
+					System.out.print("Enter Denomination of Coin: ");
 					denom = scanner.nextBigDecimal();
 				}
 				break;
 			case -1:
+				loop = false;
 				System.out.println("Exiting System");
+				System.exit(0);
 			}
+			sessionSimulation.printMenu();
 			choice = scanner.nextInt();
 		}
 
 		scanner.close();
 	}
 
-
 	public boolean scan(Barcode barcode) {
 		if(barcode == null) {
 			throw new NullPointerException("No argument may be null.");
 		}
-		//		if(mass <= 0.0) {
-		//			throw new IllegalArgumentException("The weight of the item should be greater than 0.0.");
-		//		}
+//		if(mass <= 0.0) {
+//			throw new IllegalArgumentException("The weight of the item should be greater than 0.0.")
+//		}
 		
 		BarcodedProduct scannedProduct = database.BARCODED_PRODUCT_DATABASE.get(barcode);
 		
 //		if(database.BARCODED_PRODUCT_DATABASE.containsKey(barcode)) {
 		if(scannedProduct != null) {
+			System.out.println("item exists");
 			selfCheckoutStation.scanner.disable(); //  System: Blocks the self-checkout station from further customer interaction.
 		
 			int inventoryLeft = database.INVENTORY.get(scannedProduct); 
@@ -228,6 +247,7 @@ public class SessionSimulation {
 			}
 			selfCheckoutStation.scanner.enable();
 		} else {
+			System.out.println("No Product found with barcode : " + barcode);
 			return false;
 		}
 		return false;
