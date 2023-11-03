@@ -3,6 +3,9 @@ package com.thelocalmarketplace.software;
 import java.io.IOException;
 import java.util.Scanner;
 
+import com.jjjwelectronics.Numeral;
+import com.jjjwelectronics.scanner.Barcode;
+import com.thelocalmarketplace.hardware.BarcodedProduct;
 import com.thelocalmarketplace.hardware.SelfCheckoutStation;
 
 import powerutility.PowerGrid;
@@ -17,10 +20,10 @@ public class SessionSimulation {
 	
 	// Sets up selfCheckoutStation for the Session Simulation
 //	 public void setUpSessionSimulation() {
-//		 selfCheckoutStation.plugIn(PowerGrid.instance());
-//	     selfCheckoutStation.turnOn();
+//		selfCheckoutStation.plugIn(PowerGrid.instance());
+//	    selfCheckoutStation.turnOn();
 //	 }
-//	 
+	  
 	 public void promptEnterToContinue(){
 			
 		 System.out.println("Welcome!");
@@ -36,6 +39,32 @@ public class SessionSimulation {
 		
 		SessionSimulation sessionSimulation = new SessionSimulation();
 //		sessionSimulation.setUpSessionSimulation();
+		
+		LocalMarketPlaceDatabase database = new LocalMarketPlaceDatabase();
+		
+		Barcode milkBarcode = new Barcode(new Numeral[] {Numeral.one, Numeral.two, Numeral.three, Numeral.four, Numeral.five});
+		Barcode juiceBarcode = new Barcode(new Numeral[] {Numeral.two, Numeral.three, Numeral.four, Numeral.five, Numeral.one});
+		Barcode breadBarcode = new Barcode( new Numeral[] {Numeral.three, Numeral.four, Numeral.five, Numeral.one, Numeral.two});
+		Barcode eggsBarcode = new Barcode(new Numeral[] {Numeral.four, Numeral.five, Numeral.one, Numeral.two, Numeral.three});
+		Barcode canOfBeansBarcode = new Barcode(new Numeral[] {Numeral.five, Numeral.one, Numeral.two, Numeral.three, Numeral.four});
+
+		final BarcodedProduct milk = new BarcodedProduct(milkBarcode, "MooMilk 2% 4L", 559L, 4128.00);
+		final BarcodedProduct juice = new BarcodedProduct(juiceBarcode, "Orange Juice Pulp Free 2.63L", 728L, 2630.00);
+		final BarcodedProduct bread = new BarcodedProduct(breadBarcode, "Whole Wheat Sliced Bread", 357L, 675.00);
+		final BarcodedProduct eggs = new BarcodedProduct(eggsBarcode, "Large Eggs, 12 Count", 398L, 699.00);
+		final BarcodedProduct canOfBeans = new BarcodedProduct(canOfBeansBarcode, "Dark Red Kidney Beans, 540mL", 137L, 423.00);
+			
+		database.addBarcodedProductToDatabase(milk);
+		database.addBarcodedProductToDatabase(juice);
+		database.addBarcodedProductToDatabase(bread);
+		database.addBarcodedProductToDatabase(eggs);
+		database.addBarcodedProductToDatabase(canOfBeans);
+		
+		database.addBarcodedProductToInventory(milk, 25);
+		database.addBarcodedProductToInventory(juice, 12);
+		database.addBarcodedProductToInventory(bread, 35);
+		database.addBarcodedProductToInventory(eggs, 44);
+		database.addBarcodedProductToInventory(canOfBeans, 75);
 		
 		boolean sessionStart = false;
 		StartSession sessionStarted = new StartSession(sessionStart);
@@ -54,6 +83,8 @@ public class SessionSimulation {
 		
 		//Ready for more commands from customer
 		
+		
+		scanner.close();
 	}
 	
 }
