@@ -22,6 +22,7 @@ public class LocalMarketPlaceDatabase {
 	
 	final Map<Barcode, BarcodedProduct> BARCODED_PRODUCT_DATABASE = new HashMap<>();
 	final Map<Product, Integer> INVENTORY = new HashMap<>();
+	int amount = 0;
 	
 	public LocalMarketPlaceDatabase() {
 	}

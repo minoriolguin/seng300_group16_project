@@ -1,0 +1,51 @@
+package com.thelocalmarketplace.software;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import com.jjjwelectronics.Numeral;
+import com.jjjwelectronics.scanner.Barcode;
+import com.thelocalmarketplace.hardware.BarcodedProduct;
+import com.thelocalmarketplace.hardware.Product;
+
+import ca.ucalgary.seng300.simulation.SimulationException;
+
+public class LocalMarketPlaceDatabase {
+	
+	final Map<Barcode, BarcodedProduct> BARCODED_PRODUCT_DATABASE = new HashMap<>();
+	final Map<Product, Integer> INVENTORY = new HashMap<>();
+	
+
+	Barcode milkBarcode = new Barcode(new Numeral[] {Numeral.one, Numeral.two, Numeral.three, Numeral.four, Numeral.five});
+	Barcode juiceBarcode = new Barcode(new Numeral[] {Numeral.two, Numeral.three, Numeral.four, Numeral.five, Numeral.one});
+	Barcode breadBarcode = new Barcode( new Numeral[] {Numeral.three, Numeral.four, Numeral.five, Numeral.one, Numeral.two});
+	Barcode eggsBarcode = new Barcode(new Numeral[] {Numeral.four, Numeral.five, Numeral.one, Numeral.two, Numeral.three});
+	Barcode canOfBeansBarcode = new Barcode(new Numeral[] {Numeral.five, Numeral.one, Numeral.two, Numeral.three, Numeral.four});
+
+	final BarcodedProduct milk = new BarcodedProduct(milkBarcode, "MooMilk 2% 4L", 559L, 4128.00);
+	final BarcodedProduct juice = new BarcodedProduct(juiceBarcode, "Orange Juice Pulp Free 2.63L", 728L, 2630.00);
+	final BarcodedProduct bread = new BarcodedProduct(breadBarcode, "Whole Wheat Sliced Bread", 357L, 675.00);
+	final BarcodedProduct eggs = new BarcodedProduct(eggsBarcode, "Large Eggs, 12 Count", 398L, 699.00);
+	final BarcodedProduct canOfBeans = new BarcodedProduct(canOfBeansBarcode, "Dark Red Kidney Beans, 540mL", 137L, 423.00);
+	
+
+	
+	public LocalMarketPlaceDatabase() {
+	}
+	
+	public void addBarcodedProductToDatabase(BarcodedProduct barcodedProduct) {
+		BARCODED_PRODUCT_DATABASE.put(barcodedProduct.getBarcode(), barcodedProduct);
+	}
+	
+	public void addBarcodedProductToInventory(BarcodedProduct barcodedProduct, int amount) {
+		INVENTORY.put(barcodedProduct, amount);
+	}
+	
+	public void removeBarcodedProductFromInventory(BarcodedProduct barcodedProduct, int amount) {
+		INVENTORY.put(barcodedProduct, INVENTORY.get(amount)-1);
+	}
+	
+	public int getInventoryOfBarcodedProduct(BarcodedProduct barcodedProduct, int amount) {
+		return INVENTORY.get(barcodedProduct);
+	}
+}

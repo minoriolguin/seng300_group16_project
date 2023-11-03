@@ -86,7 +86,8 @@ public class SessionSimulation {
 		final BarcodedProduct bread = new BarcodedProduct(breadBarcode, "Whole Wheat Sliced Bread", 2_75L, 675.00);
 		final BarcodedProduct eggs = new BarcodedProduct(eggsBarcode, "Large Eggs, 12 Count", 3_29L, 699.00);
 		final BarcodedProduct canOfBeans = new BarcodedProduct(canOfBeansBarcode, "Dark Red Kidney Beans, 540mL", 1_78L, 423.00);
-			
+
+
 		database.addBarcodedProductToDatabase(milk);
 		database.addBarcodedProductToDatabase(juice);
 		database.addBarcodedProductToDatabase(bread);
