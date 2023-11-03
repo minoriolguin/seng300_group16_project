@@ -1,6 +1,8 @@
 package com.thelocalmarketplace.software;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.jjjwelectronics.Numeral;
@@ -24,7 +26,7 @@ import powerutility.PowerGrid;
 
 public class SessionSimulation {
 	
-	SelfCheckoutStation selfCheckoutStation = new SelfCheckoutStation();
+	private static SelfCheckoutStation selfCheckoutStation = new SelfCheckoutStation();
 
 //	public SessionSimulation() {
 //		
@@ -46,6 +48,13 @@ public class SessionSimulation {
 		     e.printStackTrace();
 		 }
 	 }
+	 
+	private void printMenu() {
+			System.out.print("Choose option:\n"
+					+ "\t1. Add Item\n"
+					+ "\t2. Pay via Coin\n"
+					+ "Choice: ");
+	}
 	
 	public static void main(String[] args) {
 		
@@ -94,6 +103,47 @@ public class SessionSimulation {
 			}
 		
 		//Ready for more commands from customer
+		
+		sessionSimulation.printMenu();
+		int choice = scanner.nextInt();
+		
+		switch(choice) {
+		case 1:
+			System.out.println("Enter barcode to add: ");
+//			BigDecimal num = scanner.nextBigDecimal();
+			
+			Barcode barcode = new Barcode(new Numeral[] {Numeral.two, Numeral.one, Numeral.four, Numeral.three});
+			
+			if(database.INVENTORY.containsKey(barcode)) {
+				System.out.println("Valid Barcode");
+			} else {
+				System.out.println("Invalid Barcode");
+			}
+
+//			selfCheckoutStation.baggingArea.addAnItem(item1);
+
+			break;
+		case 2:
+			ArrayList<BigDecimal> denoms = (ArrayList<BigDecimal>) selfCheckoutStation.coinDenominations;
+			System.out.println("Choose denomination of coin being inserted:");
+			for(BigDecimal denom : denoms) {
+				System.out.println("\t" + denom);
+			}
+			BigDecimal denom = scanner.nextBigDecimal();
+
+			int amountDue = 1;
+			while(denom != new BigDecimal("-1") && amountDue > 0) {
+				if(denoms.contains(denom)) {
+					System.out.println("valid denom");
+					amountDue -= denom.intValue();
+				} else {
+					System.out.println("Invalid Denomination amount, please try again");
+				}
+				denom = scanner.nextBigDecimal();
+			}
+			break;
+
+		}
 		
 		scanner.close();
 	}
