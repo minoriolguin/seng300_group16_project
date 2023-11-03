@@ -5,6 +5,7 @@ import com.jjjwelectronics.IDevice;
 import com.jjjwelectronics.IDeviceListener;
 import com.jjjwelectronics.Mass;
 import com.jjjwelectronics.Numeral;
+import com.jjjwelectronics.OverloadedDevice;
 import com.jjjwelectronics.scale.ElectronicScale;
 import com.jjjwelectronics.scanner.BarcodeScanner;
 import com.jjjwelectronics.scanner.BarcodeScannerListener;
@@ -29,7 +30,7 @@ import com.thelocalmarketplace.software.LocalMarketPlaceDatabase;
 public class AddItemByBarcodeScan implements BarcodeScannerListener{
 	LocalMarketPlaceDatabase database = new LocalMarketPlaceDatabase();
 	
-	public boolean Scan(Barcode barcode,long mass,SelfCheckoutStation station) {
+	public boolean Scan(Barcode barcode,long mass,SelfCheckoutStation station) {            
 		
 		if(barcode == null) {
 			throw new NullPointerException("No argument may be null.");
@@ -43,20 +44,32 @@ public class AddItemByBarcodeScan implements BarcodeScannerListener{
 			if(inventoryLeft == 0) {
 				return false;
 			} else {
+				BarcodedProduct p = database.BARCODED_PRODUCT_DATABASE.get(barcode);
 				
-				station.scanner.scan(database.BARCODED_PRODUCT_DATABASE.get(barcode));
+				BarcodedItem i = new BarcodedItem(p.getBarcode(), null);
+				
+				station.baggingArea.addAnItem(i);
+				
+				try {
+					System.out.println("\tBaggingArea weight: " + station.baggingArea.getCurrentMassOnTheScale());
+				} catch (OverloadedDevice e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				station.scanner.scan(i);
 				
 			}
 			
 		} else {
+			System.out.println("no has");
 			return false;
 		}
-		
+		return false;
 		
 	}
 	
 	public static void main(String[] args) {
-		/*
 		SelfCheckoutStation station = new SelfCheckoutStation();
 		ElectronicScale scale = new ElectronicScale();
 		BarcodeScanner scanner1 = new BarcodeScanner();
@@ -70,10 +83,8 @@ public class AddItemByBarcodeScan implements BarcodeScannerListener{
 	}
 	
 	@Override
-	public void aDeviceHasBeenEnabled(IDevice<? extends IDeviceListener> device) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void aDeviceHasBeenEnabled(IDevice<? extends IDeviceListener> device) {}
+	
 	@Override
 	public void aDeviceHasBeenDisabled(IDevice<? extends IDeviceListener> device) {
 		// TODO Auto-generated method stub
@@ -93,7 +104,6 @@ public class AddItemByBarcodeScan implements BarcodeScannerListener{
 	public void aBarcodeHasBeenScanned(IBarcodeScanner barcodeScanner, Barcode barcode) {
 		// TODO Auto-generated method stub
 		
-		*/
 	}
 	
 	
