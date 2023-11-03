@@ -10,6 +10,18 @@ import com.thelocalmarketplace.hardware.SelfCheckoutStation;
 
 import powerutility.PowerGrid;
 
+/*
+ * SessionSimulation class contains the main method
+ * Controls all the software and runs the simulation of a SelfCheckoutStation Session
+ * 
+ * Firdovsi Aliyev 30178471
+ * Jack Graver 10187274
+ * Maheen Nizamani 30172615
+ * Minori Olguin 30035923
+ * Sarthak Monga 30190643
+ * Tanjib Riasat 30170130
+ * */
+
 public class SessionSimulation {
 	
 	SelfCheckoutStation selfCheckoutStation = new SelfCheckoutStation();
@@ -17,8 +29,8 @@ public class SessionSimulation {
 //	public SessionSimulation() {
 //		
 //	}
-	
-	// Sets up selfCheckoutStation for the Session Simulation
+//	
+//	 Sets up selfCheckoutStation for the Session Simulation
 //	 public void setUpSessionSimulation() {
 //		selfCheckoutStation.plugIn(PowerGrid.instance());
 //	    selfCheckoutStation.turnOn();
@@ -48,11 +60,11 @@ public class SessionSimulation {
 		Barcode eggsBarcode = new Barcode(new Numeral[] {Numeral.four, Numeral.five, Numeral.one, Numeral.two, Numeral.three});
 		Barcode canOfBeansBarcode = new Barcode(new Numeral[] {Numeral.five, Numeral.one, Numeral.two, Numeral.three, Numeral.four});
 
-		final BarcodedProduct milk = new BarcodedProduct(milkBarcode, "MooMilk 2% 4L", 559L, 4128.00);
-		final BarcodedProduct juice = new BarcodedProduct(juiceBarcode, "Orange Juice Pulp Free 2.63L", 728L, 2630.00);
-		final BarcodedProduct bread = new BarcodedProduct(breadBarcode, "Whole Wheat Sliced Bread", 357L, 675.00);
-		final BarcodedProduct eggs = new BarcodedProduct(eggsBarcode, "Large Eggs, 12 Count", 398L, 699.00);
-		final BarcodedProduct canOfBeans = new BarcodedProduct(canOfBeansBarcode, "Dark Red Kidney Beans, 540mL", 137L, 423.00);
+		final BarcodedProduct milk = new BarcodedProduct(milkBarcode, "MooMilk 2% 4L", 5L, 4128.00);
+		final BarcodedProduct juice = new BarcodedProduct(juiceBarcode, "Orange Juice Pulp Free 2.63L", 7L, 2630.00);
+		final BarcodedProduct bread = new BarcodedProduct(breadBarcode, "Whole Wheat Sliced Bread", 3L, 675.00);
+		final BarcodedProduct eggs = new BarcodedProduct(eggsBarcode, "Large Eggs, 12 Count", 4L, 699.00);
+		final BarcodedProduct canOfBeans = new BarcodedProduct(canOfBeansBarcode, "Dark Red Kidney Beans, 540mL", 2L, 423.00);
 			
 		database.addBarcodedProductToDatabase(milk);
 		database.addBarcodedProductToDatabase(juice);
@@ -82,7 +94,6 @@ public class SessionSimulation {
 			}
 		
 		//Ready for more commands from customer
-		
 		
 		scanner.close();
 	}

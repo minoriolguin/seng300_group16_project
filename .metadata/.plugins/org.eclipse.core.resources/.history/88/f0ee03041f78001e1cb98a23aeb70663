@@ -1,0 +1,19 @@
+//package com.thelocalmarketplace.software;
+//
+//
+//public class Start {
+//	
+//	private boolean start;
+//	
+//	public Start(boolean start) {
+//		this.start = start;
+//	}
+//	
+//	public void setStart(boolean start) {
+//		this.start = start;
+//	}
+//	
+//	public boolean getStart(boolean start) {
+//		return start;
+//	}
+//}

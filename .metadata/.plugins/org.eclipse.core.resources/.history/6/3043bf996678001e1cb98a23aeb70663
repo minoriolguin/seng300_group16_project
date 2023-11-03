@@ -1,0 +1,30 @@
+package com.thelocalmarketplace.software;
+
+import com.thelocalmarketplace.hardware.SelfCheckoutStation;
+
+import powerutility.PowerGrid;
+
+public class SessionSimulation {
+	SelfCheckoutStation selfCheckoutStation;
+
+	StartSession = new StartSession(false);
+	
+	
+	public static void main(String[] args) {
+		
+
+		
+		System.out.print(start);
+
+			if (sessionStarted.getSession() == true) {
+				System.out.println("A session has already been started, the system cannot start a new session "
+									+ "while in an active session.");
+			}
+			else {
+				sessionStarted.setSession(start);
+				System.out.println("Successfully started a session.");
+			}
+		
+	}
+	
+}

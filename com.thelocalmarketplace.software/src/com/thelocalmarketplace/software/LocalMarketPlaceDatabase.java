@@ -3,17 +3,26 @@ package com.thelocalmarketplace.software;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.jjjwelectronics.Numeral;
 import com.jjjwelectronics.scanner.Barcode;
 import com.thelocalmarketplace.hardware.BarcodedProduct;
 import com.thelocalmarketplace.hardware.Product;
-
-import ca.ucalgary.seng300.simulation.SimulationException;
+/* 
+ * Simple database for the Local Market Place
+ * 
+ * Firdovsi Aliyev 30178471
+ * Jack Graver 10187274
+ * Maheen Nizamani 30172615
+ * Minori Olguin 30035923
+ * Sarthak Monga 30190643
+ * Tanjib Riasat 30170130
+ * 
+ * */
 
 public class LocalMarketPlaceDatabase {
 	
 	final Map<Barcode, BarcodedProduct> BARCODED_PRODUCT_DATABASE = new HashMap<>();
 	final Map<Product, Integer> INVENTORY = new HashMap<>();
+	int amount = 0;
 	
 	public LocalMarketPlaceDatabase() {
 	}
@@ -26,11 +35,12 @@ public class LocalMarketPlaceDatabase {
 		INVENTORY.put(barcodedProduct, amount);
 	}
 	
-	public void removeBarcodedProductFromInventory(BarcodedProduct barcodedProduct, int amount) {
-		INVENTORY.put(barcodedProduct, INVENTORY.get(amount)-1);
+	public void removeBarcodedProductFromInventory(BarcodedProduct barcodedProduct, int amountRemoved) {
+		INVENTORY.put(barcodedProduct, INVENTORY.get(barcodedProduct) - amountRemoved);
 	}
 	
-	public int getInventoryOfBarcodedProduct(BarcodedProduct barcodedProduct, int amount) {
+	// Returns an integer representing the amount of inventory
+	public int getInventoryOfBarcodedProduct(BarcodedProduct barcodedProduct) {
 		return INVENTORY.get(barcodedProduct);
 	}
 }

@@ -1,0 +1,19 @@
+package com.thelocalmarketplace.software;
+
+
+public class Start {
+	
+	private boolean sessionStarted;
+	
+	public Start(boolean sessionStart) {
+		sessionStarted = sessionStart;
+	}
+	
+	public boolean isSessionStarted() {
+		return sessionStarted;
+	}
+
+	public void setSessionStarted(boolean sessionStart) {
+		this.sessionStarted = sessionStart;
+	}
+}
