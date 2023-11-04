@@ -20,11 +20,15 @@ public class Session {
 
 	private static Session instance = null;
 	private boolean isActive = false;
-	private static ArrayList<BarcodedItem> scannedBarcodedItems;
+	private static ArrayList<BarcodedItem> orderItems;
+	private static double totalExpectedWeight;
+	private static double amountDue;
 	
 	private Session() {
-		//instanciate data
-		scannedBarcodedItems = new ArrayList<BarcodedItem>();
+		//Instantiate data
+		orderItems = new ArrayList<BarcodedItem>();
+		totalExpectedWeight = 0;
+		amountDue = 0;
 	}
 	
 	public static Session getInstance() {
@@ -46,12 +50,32 @@ public class Session {
         isActive = false;
     }
 	
-    public ArrayList<BarcodedItem> getScannedBarcodedItems() {
-    	return scannedBarcodedItems;
+    public ArrayList<BarcodedItem> getOrderItem() {
+    	return orderItems;
     }
     
-    public void newScannedBarcodedItem(BarcodedItem item) {
-    	scannedBarcodedItems.add(item);
+    public void newOrderItem(BarcodedItem item) {
+    	orderItems.add(item);
+    }
+    
+    public double getTotalExpectedWeight() {
+    	return totalExpectedWeight;
+    }
+    
+    public void addTotalExpectedWeight(double weight) {
+    	totalExpectedWeight += weight;
+    }
+    
+    public double getAmountDue() {
+    	return amountDue;
+    }
+    
+    public void addAmountDue(double amount) {
+    	amountDue += amount;
+    }
+    
+    public void subAmountDue(double amount) {
+    	amountDue -= amount;
     }
     
 //	private boolean sessionStarted;
