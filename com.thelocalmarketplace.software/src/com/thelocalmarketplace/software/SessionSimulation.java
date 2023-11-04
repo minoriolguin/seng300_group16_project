@@ -40,7 +40,7 @@ public class SessionSimulation {
 	
 	private static Session session;
 
-	private static ArrayList<BarcodedItem> scannedBarcodedItems = new ArrayList<BarcodedItem>();
+//	private static ArrayList<BarcodedItem> scannedBarcodedItems = new ArrayList<BarcodedItem>();
 	private static double totalExpectedWeight = 0;
 
 	//	public SessionSimulation() {
@@ -77,36 +77,36 @@ public class SessionSimulation {
 	//		Heres all the blocks
 	//	}
 
-	private void setupDatabase() {
-		database = new LocalMarketPlaceDatabase();
-
-		Barcode milkBarcode = new Barcode(new Numeral[] {Numeral.one, Numeral.two, Numeral.three, Numeral.four, Numeral.five});
-		Barcode juiceBarcode = new Barcode(new Numeral[] {Numeral.two, Numeral.three, Numeral.four, Numeral.five, Numeral.one});
-		Barcode breadBarcode = new Barcode( new Numeral[] {Numeral.three, Numeral.four, Numeral.five, Numeral.one, Numeral.two});
-		Barcode eggsBarcode = new Barcode(new Numeral[] {Numeral.four, Numeral.five, Numeral.one, Numeral.two, Numeral.three});
-		Barcode canOfBeansBarcode = new Barcode(new Numeral[] {Numeral.five, Numeral.one, Numeral.two, Numeral.three, Numeral.four});
-
-		final BarcodedProduct milk = new BarcodedProduct(milkBarcode, "MooMilk 2% 4L", 5_59L, 4128.00);
-		final BarcodedProduct juice = new BarcodedProduct(juiceBarcode, "Orange Juice Pulp Free 2.63L", 6_99L, 2630.00);
-		final BarcodedProduct bread = new BarcodedProduct(breadBarcode, "Whole Wheat Sliced Bread", 2_75L, 675.00);
-		final BarcodedProduct eggs = new BarcodedProduct(eggsBarcode, "Large Eggs, 12 Count", 3_29L, 699.00);
-		final BarcodedProduct canOfBeans = new BarcodedProduct(canOfBeansBarcode, "Dark Red Kidney Beans, 540mL", 1_78L, 423.00);
-			
-		database.addBarcodedProductToDatabase(milk);
-		database.addBarcodedProductToDatabase(juice);
-		database.addBarcodedProductToDatabase(bread);
-		database.addBarcodedProductToDatabase(eggs);
-		database.addBarcodedProductToDatabase(canOfBeans);
-
-		//		 for (Map.Entry<Barcode, BarcodedProduct> entry : database.BARCODED_PRODUCT_DATABASE.entrySet())  
-		//	            System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue()); 
-
-		database.addBarcodedProductToInventory(milk, 25);
-		database.addBarcodedProductToInventory(juice, 12);
-		database.addBarcodedProductToInventory(bread, 35);
-		database.addBarcodedProductToInventory(eggs, 44);
-		database.addBarcodedProductToInventory(canOfBeans, 75);
-	}
+//	private void setupDatabase() {
+//		database = new LocalMarketPlaceDatabase();
+//
+//		Barcode milkBarcode = new Barcode(new Numeral[] {Numeral.one, Numeral.two, Numeral.three, Numeral.four, Numeral.five});
+//		Barcode juiceBarcode = new Barcode(new Numeral[] {Numeral.two, Numeral.three, Numeral.four, Numeral.five, Numeral.one});
+//		Barcode breadBarcode = new Barcode( new Numeral[] {Numeral.three, Numeral.four, Numeral.five, Numeral.one, Numeral.two});
+//		Barcode eggsBarcode = new Barcode(new Numeral[] {Numeral.four, Numeral.five, Numeral.one, Numeral.two, Numeral.three});
+//		Barcode canOfBeansBarcode = new Barcode(new Numeral[] {Numeral.five, Numeral.one, Numeral.two, Numeral.three, Numeral.four});
+//
+//		final BarcodedProduct milk = new BarcodedProduct(milkBarcode, "MooMilk 2% 4L", 5_59L, 4128.00);
+//		final BarcodedProduct juice = new BarcodedProduct(juiceBarcode, "Orange Juice Pulp Free 2.63L", 6_99L, 2630.00);
+//		final BarcodedProduct bread = new BarcodedProduct(breadBarcode, "Whole Wheat Sliced Bread", 2_75L, 675.00);
+//		final BarcodedProduct eggs = new BarcodedProduct(eggsBarcode, "Large Eggs, 12 Count", 3_29L, 699.00);
+//		final BarcodedProduct canOfBeans = new BarcodedProduct(canOfBeansBarcode, "Dark Red Kidney Beans, 540mL", 1_78L, 423.00);
+//			
+//		database.addBarcodedProductToDatabase(milk);
+//		database.addBarcodedProductToDatabase(juice);
+//		database.addBarcodedProductToDatabase(bread);
+//		database.addBarcodedProductToDatabase(eggs);
+//		database.addBarcodedProductToDatabase(canOfBeans);
+//
+//		//		 for (Map.Entry<Barcode, BarcodedProduct> entry : database.BARCODED_PRODUCT_DATABASE.entrySet())  
+//		//	            System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue()); 
+//
+//		database.addBarcodedProductToInventory(milk, 25);
+//		database.addBarcodedProductToInventory(juice, 12);
+//		database.addBarcodedProductToInventory(bread, 35);
+//		database.addBarcodedProductToInventory(eggs, 44);
+//		database.addBarcodedProductToInventory(canOfBeans, 75);
+//	}
 
 
 	public static void main(String[] args) {
@@ -118,8 +118,10 @@ public class SessionSimulation {
 		SelfCheckoutStation.configureCoinDenominations(new BigDecimal[] {new BigDecimal("0.05"), new BigDecimal("0.10"), new BigDecimal("0.25"), new BigDecimal("1"), new BigDecimal("2")});
 
 		selfCheckoutStation = new SelfCheckoutStation();
+		
+		database = LocalMarketPlaceDatabase.getInstance();
 
-		sessionSimulation.setupDatabase();
+//		sessionSimulation.setupDatabase();
 
 		
 		sessionSimulation.promptEnterToContinue();
@@ -172,8 +174,11 @@ public class SessionSimulation {
 				Barcode barcode = new Barcode(barcodeNumeral);
 				sessionSimulation.scan(barcode);
 				//scannedBarcodedItems.add(database.BARCODED_PRODUCT_DATABASE.get(barcode));
-				selfCheckoutStation.baggingArea.addAnItem(new BarcodedItem(barcode,new Mass(database.BARCODED_PRODUCT_DATABASE.get(barcode).getExpectedWeight())));
-				totalExpectedWeight += database.BARCODED_PRODUCT_DATABASE.get(barcode).getExpectedWeight();
+//				selfCheckoutStation.baggingArea.addAnItem(new BarcodedItem(barcode,new Mass(database.BARCODED_PRODUCT_DATABASE.get(barcode).getExpectedWeight())));
+				selfCheckoutStation.baggingArea.addAnItem(new BarcodedItem(barcode,new Mass(database.getBarcodedProductToDatabase(barcode).getExpectedWeight())));
+				
+//				totalExpectedWeight += database.BARCODED_PRODUCT_DATABASE.get(barcode).getExpectedWeight();
+				totalExpectedWeight += database.getBarcodedProductToDatabase(barcode).getExpectedWeight();
 			    Mass totalExpectedMass = new Mass(totalExpectedWeight);
 //				if( totalExpectedMass != selfCheckoutStation.baggingArea.getCurrentMassOnTheScale()) {
 			    if(true) {
@@ -245,13 +250,14 @@ public class SessionSimulation {
 		//			throw new IllegalArgumentException("The weight of the item should be greater than 0.0.");
 		//		}
 		
-		BarcodedProduct scannedProduct = database.BARCODED_PRODUCT_DATABASE.get(barcode);
+//		BarcodedProduct scannedProduct = database.BARCODED_PRODUCT_DATABASE.get(barcode);
+		BarcodedProduct scannedProduct = database.getBarcodedProductToDatabase(barcode);
 		
 //		if(database.BARCODED_PRODUCT_DATABASE.containsKey(barcode)) {
 		if(scannedProduct != null) {
 			selfCheckoutStation.scanner.disable(); //  System: Blocks the self-checkout station from further customer interaction.
 		
-			int inventoryLeft = database.INVENTORY.get(scannedProduct); 
+			int inventoryLeft = database.getInventoryOfBarcodedProduct(scannedProduct); 
 			if(inventoryLeft == 0) {
 				return false;
 			} else {
