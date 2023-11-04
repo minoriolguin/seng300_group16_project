@@ -37,8 +37,12 @@ public class SessionSimulation {
 	//	sessionSimulation.setUpSessionSimulation();
 
 	private static LocalMarketPlaceDatabase database;
+	
+	private static Session session;
+
 	private static ArrayList<BarcodedItem> scannedBarcodedItems = new ArrayList<BarcodeItem>();
 	private static double totalExpectedWeight = 0;
+
 	//	public SessionSimulation() {
 	//		
 	//	}
@@ -61,10 +65,11 @@ public class SessionSimulation {
 	}
 
 	private void printMenu() {
-		System.out.print("Choose option:\n"
-				+ "\t1. Add Item\n"
-				+ "\t2. Pay via Coin\n"
-				//						3. Attendant
+		System.out.print("\nChoose option:\n"
+				+ "\t1. Activate Session\n"
+				+ "\t2. Add Item\n"
+				+ "\t3. Pay via Coin\n"
+				+ "\t4. Attendant Screen\n"
 				+ "Choice: ");
 	}
 
@@ -107,26 +112,33 @@ public class SessionSimulation {
 	public static void main(String[] args) {
 
 		sessionSimulation = new SessionSimulation();
+		
+		Scanner scanner = new Scanner(System.in);	
+		
+		SelfCheckoutStation.configureCoinDenominations(new BigDecimal[] {new BigDecimal("0.05"), new BigDecimal("0.10"), new BigDecimal("0.25"), new BigDecimal("1"), new BigDecimal("2")});
+
 		selfCheckoutStation = new SelfCheckoutStation();
 
 		sessionSimulation.setupDatabase();
 
+		
+		sessionSimulation.promptEnterToContinue();
 		//		sessionSimulation.setUpSessionSimulation();
 
-		boolean sessionStart = false;
-		StartSession sessionStarted = new StartSession(sessionStart);
+//		boolean sessionStart = false;
+//		StartSession sessionStarted = new StartSession(sessionStart);
+//		session = Session.getInstance();	
 
-		Scanner scanner = new Scanner(System.in);		
-
-		if (sessionStarted.getSessionStarted() == true) {
-			System.out.println("A session has already been started, the system cannot start a new session "
-					+ "while in an active session.");
-		}
-		else {
-			sessionSimulation.promptEnterToContinue();
-			sessionStarted.setSessionStarted(sessionStart);
-			System.out.println("Successfully started a session.");
-		}
+//		if (sessionStarted.getSessionStarted() == true) {
+//		if(session.isActive()) {
+//			System.out.println("A session has already been started, the system cannot start a new session "
+//					+ "while in an active session.");
+//		} else {
+//			sessionSimulation.promptEnterToContinue();
+////			sessionStarted.setSessionStarted(sessionStart);
+//			session.activate();
+//			System.out.println("Successfully started a session.");
+//		}
 
 		//Ready for more commands from customer
 
@@ -140,7 +152,11 @@ public class SessionSimulation {
 			 */
 			switch(choice) {
 			case 1:
-				System.out.println("Enter barcode to add: ");
+				sessionSimulation.activateSession();
+				//activate session
+				break;
+			case 2:
+				System.out.print("Enter barcode to add: ");
 				BigDecimal barcodeInput = scanner.nextBigDecimal();
 
 				System.out.println("You entered: " + barcodeInput);
@@ -173,7 +189,8 @@ public class SessionSimulation {
 				//				selfCheckoutStation.baggingArea.addAnItem(item1);
 
 				break;
-			case 2:
+			case 3:
+//				if(amountDue != 0) { //SHOULD SAY NO NEED TO PAY NOTHING TO PAY, could also make a dynamic menu that doesnt have pay option if no amount due
 				ArrayList<BigDecimal> denoms = (ArrayList<BigDecimal>) selfCheckoutStation.coinDenominations;
 				System.out.println("Choose denomination of coin being inserted:");
 				for(BigDecimal denom : denoms) {
@@ -192,6 +209,9 @@ public class SessionSimulation {
 					denom = scanner.nextBigDecimal();
 				}
 				break;
+			case 4:
+				//attendant
+				break;
 			case -1:
 				System.out.println("Exiting System");
 			}
@@ -199,6 +219,19 @@ public class SessionSimulation {
 		}
 
 		scanner.close();
+	}
+	
+	public void activateSession() {
+		session = Session.getInstance();
+		if(session.isActive()) {
+			System.out.println("A session has already been started, the system cannot start a new session "
+							 + "while in an active session.");
+		} else {
+//			sessionSimulation.promptEnterToContinue();
+//			sessionStarted.setSessionStarted(sessionStart);
+			session.activate();
+			System.out.println("Successfully started a session.");
+		}
 	}
 
 
