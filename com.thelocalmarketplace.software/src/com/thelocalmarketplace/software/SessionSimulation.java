@@ -84,42 +84,6 @@ public class SessionSimulation {
 				+ "Choice: ");
 	}
 
-	//	printAttendantMenu() {
-	//		Heres all the blocks
-	//	}
-
-//	private void setupDatabase() {
-//		database = new LocalMarketPlaceDatabase();
-//
-//		Barcode milkBarcode = new Barcode(new Numeral[] {Numeral.one, Numeral.two, Numeral.three, Numeral.four, Numeral.five});
-//		Barcode juiceBarcode = new Barcode(new Numeral[] {Numeral.two, Numeral.three, Numeral.four, Numeral.five, Numeral.one});
-//		Barcode breadBarcode = new Barcode( new Numeral[] {Numeral.three, Numeral.four, Numeral.five, Numeral.one, Numeral.two});
-//		Barcode eggsBarcode = new Barcode(new Numeral[] {Numeral.four, Numeral.five, Numeral.one, Numeral.two, Numeral.three});
-//		Barcode canOfBeansBarcode = new Barcode(new Numeral[] {Numeral.five, Numeral.one, Numeral.two, Numeral.three, Numeral.four});
-//
-//		final BarcodedProduct milk = new BarcodedProduct(milkBarcode, "MooMilk 2% 4L", 5_59L, 4128.00);
-//		final BarcodedProduct juice = new BarcodedProduct(juiceBarcode, "Orange Juice Pulp Free 2.63L", 6_99L, 2630.00);
-//		final BarcodedProduct bread = new BarcodedProduct(breadBarcode, "Whole Wheat Sliced Bread", 2_75L, 675.00);
-//		final BarcodedProduct eggs = new BarcodedProduct(eggsBarcode, "Large Eggs, 12 Count", 3_29L, 699.00);
-//		final BarcodedProduct canOfBeans = new BarcodedProduct(canOfBeansBarcode, "Dark Red Kidney Beans, 540mL", 1_78L, 423.00);
-//			
-//		database.addBarcodedProductToDatabase(milk);
-//		database.addBarcodedProductToDatabase(juice);
-//		database.addBarcodedProductToDatabase(bread);
-//		database.addBarcodedProductToDatabase(eggs);
-//		database.addBarcodedProductToDatabase(canOfBeans);
-//
-//		//		 for (Map.Entry<Barcode, BarcodedProduct> entry : database.BARCODED_PRODUCT_DATABASE.entrySet())  
-//		//	            System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue()); 
-//
-//		database.addBarcodedProductToInventory(milk, 25);
-//		database.addBarcodedProductToInventory(juice, 12);
-//		database.addBarcodedProductToInventory(bread, 35);
-//		database.addBarcodedProductToInventory(eggs, 44);
-//		database.addBarcodedProductToInventory(canOfBeans, 75);
-//	}
-
-
 	public static void main(String[] args) {
 
 		sessionSimulation = new SessionSimulation();
@@ -138,22 +102,6 @@ public class SessionSimulation {
 
 		
 		sessionSimulation.promptEnterToContinue();
-		//		sessionSimulation.setUpSessionSimulation();
-
-//		boolean sessionStart = false;
-//		StartSession sessionStarted = new StartSession(sessionStart);
-//		session = Session.getInstance();	
-
-//		if (sessionStarted.getSessionStarted() == true) {
-//		if(session.isActive()) {
-//			System.out.println("A session has already been started, the system cannot start a new session "
-//					+ "while in an active session.");
-//		} else {
-//			sessionSimulation.promptEnterToContinue();
-////			sessionStarted.setSessionStarted(sessionStart);
-//			session.activate();
-//			System.out.println("Successfully started a session.");
-//		}
 
 		//Ready for more commands from customer
 
@@ -186,31 +134,6 @@ public class SessionSimulation {
 				}
 				Barcode barcode = new Barcode(barcodeNumeral);
 				sessionSimulation.scan(barcode);
-
-						
-////				sessionSimulation.scan(barcode);
-//
-////				scannedBarcodedItems.add(database.BARCODED_PRODUCT_DATABASE.get(barcode));
-//				session.newScannedBarcodedItem(new BarcodedItem(barcode,new Mass(database.getBarcodedProductToDatabase(barcode).getExpectedWeight())));
-////				selfCheckoutStation.baggingArea.addAnItem(new BarcodedItem(barcode,new Mass(database.BARCODED_PRODUCT_DATABASE.get(barcode).getExpectedWeight())));
-//				selfCheckoutStation.baggingArea.addAnItem(new BarcodedItem(barcode,new Mass(database.getBarcodedProductToDatabase(barcode).getExpectedWeight())));
-//				
-////				totalExpectedWeight += database.BARCODED_PRODUCT_DATABASE.get(barcode).getExpectedWeight();
-//				totalExpectedWeight += database.getBarcodedProductToDatabase(barcode).getExpectedWeight();
-//			    Mass totalExpectedMass = new Mass(totalExpectedWeight);
-//				if( totalExpectedMass != selfCheckoutStation.baggingArea.getCurrentMassOnTheScale()) {
-					// Should call WeightDiscrepancy();
-//				}
-
-				//				if(database.INVENTORY.containsKey(barcode)) {
-				//					System.out.println("Valid Barcode");
-				//				} else {
-				//					System.out.println("Invalid Barcode");
-				//				}
-
-
-				//				selfCheckoutStation.baggingArea.addAnItem(item1);
-
 				break;
 			case 3:
 				sessionSimulation.payViaCoin();
@@ -237,8 +160,6 @@ public class SessionSimulation {
 			System.out.println("A session has already been started, the system cannot start a new session "
 							 + "while in an active session.");
 		} else {
-//			sessionSimulation.promptEnterToContinue();
-//			sessionStarted.setSessionStarted(sessionStart);
 			session.activate();
 			System.out.println("Successfully started a session.");
 		}
@@ -283,93 +204,6 @@ public class SessionSimulation {
 		default:
 			System.out.println("Invalid option. " + product.getDescription() + " not added to bagging area");
 		}
-		
-		
-//		System.out.print("Enter barcode to add: ");
-//		BigDecimal barcodeInput = scanner.nextBigDecimal();
-//
-//		System.out.println("You entered: " + barcodeInput);
-//		String barcodeInputString = barcodeInput.toString();
-//
-//		int i = 0;
-//		Numeral[] barcodeNumeral = new Numeral[barcodeInputString.length()];
-//		for(char c : barcodeInputString.toCharArray()) {
-//			barcodeNumeral[i] = Numeral.valueOf(Byte.valueOf(String.valueOf(c)));
-//			i++;
-//		}
-//
-//		Barcode barcode = new Barcode(barcodeNumeral);
-////		sessionSimulation.scan(barcode);
-//
-////		scannedBarcodedItems.add(database.BARCODED_PRODUCT_DATABASE.get(barcode));
-//		session.newScannedBarcodedItem(new BarcodedItem(barcode,new Mass(database.getBarcodedProductToDatabase(barcode).getExpectedWeight())));
-////		selfCheckoutStation.baggingArea.addAnItem(new BarcodedItem(barcode,new Mass(database.BARCODED_PRODUCT_DATABASE.get(barcode).getExpectedWeight())));
-//		selfCheckoutStation.baggingArea.addAnItem(new BarcodedItem(barcode,new Mass(database.getBarcodedProductToDatabase(barcode).getExpectedWeight())));
-//		
-////		totalExpectedWeight += database.BARCODED_PRODUCT_DATABASE.get(barcode).getExpectedWeight();
-//		totalExpectedWeight += database.getBarcodedProductToDatabase(barcode).getExpectedWeight();
-//	    Mass totalExpectedMass = new Mass(totalExpectedWeight);
-////		if( totalExpectedMass != selfCheckoutStation.baggingArea.getCurrentMassOnTheScale()) {
-//			// Should call WeightDiscrepancy();
-////		}
-//
-//		//				if(database.INVENTORY.containsKey(barcode)) {
-//		//					System.out.println("Valid Barcode");
-//		//				} else {
-//		//					System.out.println("Invalid Barcode");
-//		//				}
-//
-//
-//		//				selfCheckoutStation.baggingArea.addAnItem(item1);
-
-		
-		
-		
-		
-		
-		
-		
-		
-//		
-//		if(barcode == null) {
-//			throw new NullPointerException("No argument may be null.");
-//		}
-//		//		if(mass <= 0.0) {
-//		//			throw new IllegalArgumentException("The weight of the item should be greater than 0.0.");
-//		//		}
-//		
-////		BarcodedProduct scannedProduct = database.BARCODED_PRODUCT_DATABASE.get(barcode);
-//		BarcodedProduct scannedProduct = database.getBarcodedProductToDatabase(barcode);
-//		
-////		if(database.BARCODED_PRODUCT_DATABASE.containsKey(barcode)) {
-//		if(scannedProduct != null) {
-////			selfCheckoutStation.scanner.disable(); //  System: Blocks the self-checkout station from further customer interaction.
-//		
-//			int inventoryLeft = database.getInventoryOfBarcodedProduct(scannedProduct); 
-//			if(inventoryLeft == 0) {
-//				return false;
-//			} else {
-////				BarcodedProduct p = database.BARCODED_PRODUCT_DATABASE.get(barcode);
-//
-//				BarcodedItem scannedItem = new BarcodedItem(scannedProduct.getBarcode(), new Mass(scannedProduct.getExpectedWeight()));
-//
-////				selfCheckoutStation.baggingArea.addAnItem(scannedItem);
-//
-//				try {
-//					System.out.println("\tBaggingArea weight: " + selfCheckoutStation.baggingArea.getCurrentMassOnTheScale());
-//				} catch (OverloadedDevice e) {
-//					e.printStackTrace();
-//				}
-//
-//				selfCheckoutStation.scanner.scan(scannedItem);
-//
-//			}
-////			selfCheckoutStation.scanner.enable();
-//		} else {
-//			return false;
-//		}
-//		return false;
-
 	}
 	
 	
