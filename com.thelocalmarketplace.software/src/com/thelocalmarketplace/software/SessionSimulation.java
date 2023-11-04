@@ -13,6 +13,7 @@ import com.jjjwelectronics.OverloadedDevice;
 import com.jjjwelectronics.scanner.Barcode;
 import com.jjjwelectronics.scanner.BarcodedItem;
 import com.thelocalmarketplace.hardware.BarcodedProduct;
+import com.thelocalmarketplace.hardware.Product;
 import com.thelocalmarketplace.hardware.SelfCheckoutStation;
 
 import powerutility.PowerGrid;
@@ -34,24 +35,12 @@ public class SessionSimulation {
 	private static SelfCheckoutStation selfCheckoutStation;
 
 	private static SessionSimulation sessionSimulation;
-	//	sessionSimulation.setUpSessionSimulation();
 
 	private static LocalMarketPlaceDatabase database;
 	
 	private static Session session;
 
 	private static Scanner scanner;
-	
-
-	//	public SessionSimulation() {
-	//		
-	//	}
-	//	
-	//	 Sets up selfCheckoutStation for the Session Simulation
-	//	 public void setUpSessionSimulation() {
-	//		selfCheckoutStation.plugIn(PowerGrid.instance());
-	//	    selfCheckoutStation.turnOn();
-	//	 }
 
 	public void promptEnterToContinue(){
 
@@ -68,9 +57,9 @@ public class SessionSimulation {
 		if(session != null && session.getOrderItem().size() != 0) {
 			System.out.println("\n============================\n"
 								+ "Order Items:");
-			int i = 0;
+			int i = 1;
 			for(BarcodedItem bi : session.getOrderItem()) {
-				System.out.println("\t" + i + ": " + bi.getBarcode() + " : " + bi.getMass());
+				System.out.println("\t   " + i + ") " + bi.getBarcode() + " : " + bi.getMass().inGrams() + " gramms");
 				i++;
 			}
 			System.out.println("Total due: " + session.getAmountDue());
@@ -100,7 +89,6 @@ public class SessionSimulation {
 		
 		database = LocalMarketPlaceDatabase.getInstance();
 
-//		sessionSimulation.setupDatabase();
 
 		sessionSimulation.promptEnterToContinue();
 
@@ -111,13 +99,15 @@ public class SessionSimulation {
 
 		boolean loop = true;
 		while(loop) {
-			if(session != null && session.hasWeightDiscrepancy()) {
+			if(session != null && session.getWeightDiscrepancy() != null && session.hasWeightDiscrepancy()) {
 				System.out.print("\n============================\n"
 								 + "Weight Discrepancy has been detected\n"
+								 + "Product: " + session.getWeightDiscrepancy().getProduct().getDescription() + "caused discrepancy\n"
+								 + "\tHas weight " + session.getWeightDiscrepancy().getWeight() + ", was expecting " + session.getTotalExpectedWeight() + "\n\n"
 								 + "\t 1. Add/Remove item\n"
 								 + "\t 2. Do-Not-Bag Request\n"
 								 + "\t 3. Attendant Approval\n"
-								 + "\t-1. Exit"
+								 + "\t-1. Exit\n"
 								 + "Choice: ");
 				int wChoice = scanner.nextInt();
 				switch (wChoice) {
@@ -137,7 +127,6 @@ public class SessionSimulation {
 					System.out.print("Enter barcode to add: ");
 					BigDecimal barcodeInput = scanner.nextBigDecimal();
 	
-//					System.out.println("You entered: " + barcodeInput);
 					String barcodeInputString = barcodeInput.toString();
 	
 					int i = 0;
@@ -186,7 +175,7 @@ public class SessionSimulation {
 	public void scan(Barcode barcode) {
 		
 		//3. Determines the characteristics (weight and cost) of the product associated with the barcode.
-		BarcodedProduct product = database.getBarcodedProductToDatabase(barcode);
+		BarcodedProduct product = database.getBarcodedProductFromDatabase(barcode);
 		if(product != null) {
 			System.out.println("The barcode (" + barcode + ") is for " + product.getDescription());
 			//5. Signals to the Customer to place the scanned item in the bagging area
@@ -201,15 +190,16 @@ public class SessionSimulation {
 				selfCheckoutStation.baggingArea.addAnItem(item);
 				session.newOrderItem(item);
 				System.out.println(product.getDescription() + " was added to bagging area");
-					//check weight discrepancy
 				
 				session.addTotalExpectedWeight(product.getExpectedWeight());
 				session.addAmountDue(product.getPrice());
 				Mass totalExpectedMass = new Mass(session.getTotalExpectedWeight());
+
 				try {
 					int diff = totalExpectedMass.inGrams().compareTo(selfCheckoutStation.baggingArea.getCurrentMassOnTheScale().inGrams());
 					if(diff != 0) {
-						session.setWeightDiscrepancy();
+						System.out.println("Test: " + totalExpectedMass + "/" + session.getTotalExpectedWeight() + " : " + selfCheckoutStation.baggingArea.getCurrentMassOnTheScale().inGrams());
+						session.setWeightDiscrepancy(product, selfCheckoutStation.baggingArea.getCurrentMassOnTheScale().inGrams());
 						System.out.println("Weight discrepancy detected");
 					}
 				} catch (OverloadedDevice e) {
@@ -218,6 +208,27 @@ public class SessionSimulation {
 				break;
 			case "NO":
 				System.out.println(product.getDescription() + " was not added to bagging area");
+//				if(discrepancy.WeightDiscrepancyMessage(selfCheckoutStation, product) == "Add") {
+//					item = new BarcodedItem(product.getBarcode(), new Mass(product.getExpectedWeight()));
+//					selfCheckoutStation.baggingArea.addAnItem(item);
+//					session.newOrderItem(item);
+//					System.out.println(product.getDescription() + " was added to bagging area");
+//						//check weight discrepancy
+//					
+//					session.addTotalExpectedWeight(product.getExpectedWeight());
+//					session.addAmountDue(product.getPrice());
+//					totalExpectedMass = new Mass(session.getTotalExpectedWeight());
+//					try {
+//						int diff = totalExpectedMass.inGrams().compareTo(selfCheckoutStation.baggingArea.getCurrentMassOnTheScale().inGrams());
+//						if(diff != 0) {
+//							session.setWeightDiscrepancy();
+//							System.out.println("Weight discrepancy detected");
+//						}
+//					} catch (OverloadedDevice e) {
+//						
+//					}
+//				}
+				
 				break;
 			default:
 				System.out.println("Invalid option. " + product.getDescription() + " not added to bagging area");

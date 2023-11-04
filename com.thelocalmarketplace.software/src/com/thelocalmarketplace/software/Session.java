@@ -1,8 +1,10 @@
 package com.thelocalmarketplace.software;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import com.jjjwelectronics.scanner.BarcodedItem;
+import com.thelocalmarketplace.hardware.BarcodedProduct;
 
 /*
  * StartSession controls whether the SelfCheckoutStation is in an active state ready for customer interaction
@@ -23,14 +25,14 @@ public class Session {
 	private static ArrayList<BarcodedItem> orderItems;
 	private static double totalExpectedWeight;
 	private static double amountDue;
-	private static boolean weightDiscrepancy;
+	private static WeightDiscrepancy weightDiscrepancy;
 	
 	private Session() {
 		//Instantiate data
 		orderItems = new ArrayList<BarcodedItem>();
 		totalExpectedWeight = 0;
 		amountDue = 0;
-		weightDiscrepancy = false;
+		weightDiscrepancy = null;
 	}
 	
 	public static Session getInstance() {
@@ -53,6 +55,9 @@ public class Session {
     }
 	
     public ArrayList<BarcodedItem> getOrderItem() {
+    	if(orderItems == null) {
+    		throw new NullPointerException();
+    	}
     	return orderItems;
     }
     
@@ -80,34 +85,19 @@ public class Session {
     	amountDue -= amount;
     }
     
-    public void setWeightDiscrepancy() {
-    	weightDiscrepancy = true;
+    public void setWeightDiscrepancy(BarcodedProduct product, BigDecimal weight) {
+    	weightDiscrepancy = new WeightDiscrepancy(product, weight);
     }
     
     public void setNoWeightDiscrepancy() {
-    	weightDiscrepancy = false;
+    	weightDiscrepancy = null;
     }
     
     public boolean hasWeightDiscrepancy() {
-    	return weightDiscrepancy;
+    	return weightDiscrepancy != null;
     }
     
-//	private boolean sessionStarted;
-//	
-//	// Constructor for StartSession
-//	public StartSession(boolean sessionStart) {
-//		sessionStarted = sessionStart;
-//	}
-//	
-//	// Returns the value of sessionStarted
-//	public boolean getSessionStarted() {
-//		return sessionStarted;
-//	}
-//
-//	// Changes that value sessionStarted to the value of sessionStart
-//	public void setSessionStarted(boolean sessionStart) {
-//		this.sessionStarted = sessionStart;
-//	}
-
-
+    public WeightDiscrepancy getWeightDiscrepancy() {
+    	return weightDiscrepancy;
+    }
 }
