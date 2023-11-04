@@ -92,22 +92,6 @@ public class Session {
     	return weightDiscrepancy;
     }
     
-//	private boolean sessionStarted;
-//	
-//	// Constructor for StartSession
-//	public StartSession(boolean sessionStart) {
-//		sessionStarted = sessionStart;
-//	}
-//	
-//	// Returns the value of sessionStarted
-//	public boolean getSessionStarted() {
-//		return sessionStarted;
-//	}
-//
-//	// Changes that value sessionStarted to the value of sessionStart
-//	public void setSessionStarted(boolean sessionStart) {
-//		this.sessionStarted = sessionStart;
-//	}
 
 
 }
