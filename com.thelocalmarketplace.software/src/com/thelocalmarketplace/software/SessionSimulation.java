@@ -40,7 +40,7 @@ public class SessionSimulation {
 	
 	private static Session session;
 
-	private static ArrayList<BarcodedItem> scannedBarcodedItems = new ArrayList<BarcodeItem>();
+	private static ArrayList<BarcodedItem> scannedBarcodedItems = new ArrayList<BarcodedItem>();
 	private static double totalExpectedWeight = 0;
 
 	//	public SessionSimulation() {
@@ -175,7 +175,8 @@ public class SessionSimulation {
 				selfCheckoutStation.baggingArea.addAnItem(new BarcodedItem(barcode,new Mass(database.BARCODED_PRODUCT_DATABASE.get(barcode).getExpectedWeight())));
 				totalExpectedWeight += database.BARCODED_PRODUCT_DATABASE.get(barcode).getExpectedWeight();
 			    Mass totalExpectedMass = new Mass(totalExpectedWeight);
-				if( totalExpectedMass != selfCheckoutStation.baggingArea.getCurrentMassOnTheScale()) {
+//				if( totalExpectedMass != selfCheckoutStation.baggingArea.getCurrentMassOnTheScale()) {
+			    if(true) {
 					// Should call WeightDiscrepancy();
 				}
 
@@ -215,6 +216,7 @@ public class SessionSimulation {
 			case -1:
 				System.out.println("Exiting System");
 			}
+			sessionSimulation.printMenu();
 			choice = scanner.nextInt();
 		}
 
