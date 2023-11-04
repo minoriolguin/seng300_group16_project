@@ -52,9 +52,6 @@ public class LocalMarketPlaceDatabase {
 		addBarcodedProductToDatabase(eggs);
 		addBarcodedProductToDatabase(canOfBeans);
 
-		//		 for (Map.Entry<Barcode, BarcodedProduct> entry : database.BARCODED_PRODUCT_DATABASE.entrySet())  
-		//	            System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue()); 
-
 		addBarcodedProductToInventory(milk, 25);
 		addBarcodedProductToInventory(juice, 12);
 		addBarcodedProductToInventory(bread, 35);
@@ -91,27 +88,4 @@ public class LocalMarketPlaceDatabase {
 		return INVENTORY.get(barcodedProduct);
 	}
 
-	
-//	final Map<Barcode, BarcodedProduct> BARCODED_PRODUCT_DATABASE = new HashMap<>();
-//	final Map<Product, Integer> INVENTORY = new HashMap<>();
-//	
-//	public LocalMarketPlaceDatabase() {
-//	}
-//
-//	public void addBarcodedProductToDatabase(BarcodedProduct barcodedProduct) {
-//		BARCODED_PRODUCT_DATABASE.put(barcodedProduct.getBarcode(), barcodedProduct);
-//	}
-//	
-//	public void addBarcodedProductToInventory(BarcodedProduct barcodedProduct, int amount) {
-//		INVENTORY.put(barcodedProduct, amount);
-//	}
-//	
-//	public void removeBarcodedProductFromInventory(BarcodedProduct barcodedProduct, int amountRemoved) {
-//		INVENTORY.put(barcodedProduct, INVENTORY.get(barcodedProduct) - amountRemoved);
-//	}
-//	
-//	// Returns an integer representing the amount of inventory
-//	public int getInventoryOfBarcodedProduct(BarcodedProduct barcodedProduct) {
-//		return INVENTORY.get(barcodedProduct);
-//	}
 }
