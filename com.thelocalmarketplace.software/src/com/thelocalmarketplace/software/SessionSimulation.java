@@ -84,7 +84,6 @@ public class SessionSimulation {
 				+ "Choice: ");
 	}
 
-
 	public static void main(String[] args) {
 
 		sessionSimulation = new SessionSimulation();
@@ -135,8 +134,6 @@ public class SessionSimulation {
 				}
 				Barcode barcode = new Barcode(barcodeNumeral);
 				sessionSimulation.scan(barcode);
-
-
 				break;
 			case 3:
 				sessionSimulation.payViaCoin();
@@ -207,8 +204,6 @@ public class SessionSimulation {
 		default:
 			System.out.println("Invalid option. " + product.getDescription() + " not added to bagging area");
 		}
-		
-		
 	}
 	
 	
