@@ -69,7 +69,9 @@ public class LocalMarketPlaceDatabase {
 	}
 
 	public void addBarcodedProductToDatabase(BarcodedProduct barcodedProduct) {
-		BARCODED_PRODUCT_DATABASE.put(barcodedProduct.getBarcode(), barcodedProduct);
+		if(barcodedProduct != null) {
+			BARCODED_PRODUCT_DATABASE.put(barcodedProduct.getBarcode(), barcodedProduct);
+		}
 	}
 	
 	public BarcodedProduct getBarcodedProductFromDatabase(Barcode barcode) {
@@ -77,9 +79,12 @@ public class LocalMarketPlaceDatabase {
 	}
 
 	public void addBarcodedProductToInventory(BarcodedProduct barcodedProduct, int amount) {
-		INVENTORY.put(barcodedProduct, amount);
+		if(barcodedProduct != null) {
+			INVENTORY.put(barcodedProduct, amount);
+		}	
 	}
 
+	//needed?
 	public void removeBarcodedProductFromInventory(BarcodedProduct barcodedProduct, int amountRemoved) {
 		INVENTORY.put(barcodedProduct, INVENTORY.get(barcodedProduct) - amountRemoved);
 	}

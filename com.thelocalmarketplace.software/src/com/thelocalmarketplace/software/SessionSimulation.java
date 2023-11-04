@@ -176,7 +176,7 @@ public class SessionSimulation {
 	public void scan(Barcode barcode) {
 		
 		//3. Determines the characteristics (weight and cost) of the product associated with the barcode.
-		BarcodedProduct product = database.getBarcodedProductToDatabase(barcode);
+		BarcodedProduct product = database.getBarcodedProductFromDatabase(barcode);
 		if(product != null) {
 			System.out.println("The barcode (" + barcode + ") is for " + product.getDescription());
 			//5. Signals to the Customer to place the scanned item in the bagging area

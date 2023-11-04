@@ -53,6 +53,9 @@ public class Session {
     }
 	
     public ArrayList<BarcodedItem> getOrderItem() {
+    	if(orderItems == null) {
+    		throw new NullPointerException();
+    	}
     	return orderItems;
     }
     
