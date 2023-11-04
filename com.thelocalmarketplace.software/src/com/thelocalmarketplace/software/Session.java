@@ -23,12 +23,14 @@ public class Session {
 	private static ArrayList<BarcodedItem> orderItems;
 	private static double totalExpectedWeight;
 	private static double amountDue;
+	private static boolean weightDiscrepancy;
 	
 	private Session() {
 		//Instantiate data
 		orderItems = new ArrayList<BarcodedItem>();
 		totalExpectedWeight = 0;
 		amountDue = 0;
+		weightDiscrepancy = false;
 	}
 	
 	public static Session getInstance() {
@@ -76,6 +78,18 @@ public class Session {
     
     public void subAmountDue(double amount) {
     	amountDue -= amount;
+    }
+    
+    public void setWeightDiscrepancy() {
+    	weightDiscrepancy = true;
+    }
+    
+    public void setNoWeightDiscrepancy() {
+    	weightDiscrepancy = false;
+    }
+    
+    public boolean hasWeightDiscrepancy() {
+    	return weightDiscrepancy;
     }
     
 //	private boolean sessionStarted;
