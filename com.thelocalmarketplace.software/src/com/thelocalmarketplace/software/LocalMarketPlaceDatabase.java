@@ -72,7 +72,7 @@ public class LocalMarketPlaceDatabase {
 		BARCODED_PRODUCT_DATABASE.put(barcodedProduct.getBarcode(), barcodedProduct);
 	}
 	
-	public BarcodedProduct getBarcodedProductToDatabase(Barcode barcode) {
+	public BarcodedProduct getBarcodedProductFromDatabase(Barcode barcode) {
 		return BARCODED_PRODUCT_DATABASE.get(barcode);
 	}
 
