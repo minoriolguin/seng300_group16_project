@@ -28,43 +28,43 @@ import com.thelocalmarketplace.software.LocalMarketPlaceDatabase;
  * */
 
 public class AddItemByBarcodeScan implements BarcodeScannerListener{
-	LocalMarketPlaceDatabase database = new LocalMarketPlaceDatabase();
+//	LocalMarketPlaceDatabase database = new LocalMarketPlaceDatabase();
 	
 	public boolean Scan(Barcode barcode,long mass,SelfCheckoutStation station) {            
-		
-		if(barcode == null) {
-			throw new NullPointerException("No argument may be null.");
-		}
-		if(mass <= 0.0) {
-			throw new IllegalArgumentException("The weight of the item should be greater than 0.0.");
-		}
-		if(database.BARCODED_PRODUCT_DATABASE.containsKey(barcode)) {
-			station.scanner.disable(); //  System: Blocks the self-checkout station from further customer interaction.
-			int inventoryLeft = database.INVENTORY.get(barcode); 
-			if(inventoryLeft == 0) {
-				return false;
-			} else {
-				BarcodedProduct p = database.BARCODED_PRODUCT_DATABASE.get(barcode);
-				
-				BarcodedItem i = new BarcodedItem(p.getBarcode(), null);
-				
-				station.baggingArea.addAnItem(i);
-				
-				try {
-					System.out.println("\tBaggingArea weight: " + station.baggingArea.getCurrentMassOnTheScale());
-				} catch (OverloadedDevice e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-				station.scanner.scan(i);
-				
-			}
-			
-		} else {
-			System.out.println("no has");
-			return false;
-		}
+//		
+//		if(barcode == null) {
+//			throw new NullPointerException("No argument may be null.");
+//		}
+//		if(mass <= 0.0) {
+//			throw new IllegalArgumentException("The weight of the item should be greater than 0.0.");
+//		}
+//		if(database.BARCODED_PRODUCT_DATABASE.containsKey(barcode)) {
+//			station.scanner.disable(); //  System: Blocks the self-checkout station from further customer interaction.
+//			int inventoryLeft = database.INVENTORY.get(barcode); 
+//			if(inventoryLeft == 0) {
+//				return false;
+//			} else {
+//				BarcodedProduct p = database.BARCODED_PRODUCT_DATABASE.get(barcode);
+//				
+//				BarcodedItem i = new BarcodedItem(p.getBarcode(), null);
+//				
+//				station.baggingArea.addAnItem(i);
+//				
+//				try {
+//					System.out.println("\tBaggingArea weight: " + station.baggingArea.getCurrentMassOnTheScale());
+//				} catch (OverloadedDevice e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//				
+//				station.scanner.scan(i);
+//				
+//			}
+//			
+//		} else {
+//			System.out.println("no has");
+//			return false;
+//		}
 		return false;
 		
 	}

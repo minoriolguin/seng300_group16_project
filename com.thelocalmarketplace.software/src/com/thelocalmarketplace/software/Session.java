@@ -1,4 +1,9 @@
 package com.thelocalmarketplace.software;
+
+import java.util.ArrayList;
+
+import com.jjjwelectronics.scanner.BarcodedItem;
+
 /*
  * StartSession controls whether the SelfCheckoutStation is in an active state ready for customer interaction
  * 
@@ -15,9 +20,11 @@ public class Session {
 
 	private static Session instance = null;
 	private boolean isActive = false;
+	private static ArrayList<BarcodedItem> scannedBarcodedItems;
 	
 	private Session() {
 		//instanciate data
+		scannedBarcodedItems = new ArrayList<BarcodedItem>();
 	}
 	
 	public static Session getInstance() {
@@ -39,6 +46,14 @@ public class Session {
         isActive = false;
     }
 	
+    public ArrayList<BarcodedItem> getScannedBarcodedItems() {
+    	return scannedBarcodedItems;
+    }
+    
+    public void newScannedBarcodedItem(BarcodedItem item) {
+    	scannedBarcodedItems.add(item);
+    }
+    
 //	private boolean sessionStarted;
 //	
 //	// Constructor for StartSession
