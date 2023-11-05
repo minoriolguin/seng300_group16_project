@@ -69,7 +69,6 @@ public class SessionSimulation {
 				+ "\t 1. Activate Session\n"
 				+ "\t 2. Add Item\n"
 				+ "\t 3. Pay via Coin\n"
-				+ "\t 4. Attendant Screen\n"
 				+ "\t-1. Exit\n"
 				+ "Choice: ");
 	}
@@ -111,10 +110,22 @@ public class SessionSimulation {
 				int wChoice = scanner.nextInt();
 				switch (wChoice) {
 				case 1:
+					System.out.println("Item has been added/removed from bagging area.");
+					session.setNoWeightDiscrepancy();
+					sessionSimulation.printMenu();
+					choice = scanner.nextInt();
 					break;
 				case 2:
+					System.out.println("No-Bag-Request has been activated.");
+					session.setNoWeightDiscrepancy();
+					sessionSimulation.printMenu();
+					choice = scanner.nextInt();
 					break;
 				case 3:
+					System.out.println("Attendant has approved weight discrepancy.");
+					session.setNoWeightDiscrepancy();
+					sessionSimulation.printMenu();
+					choice = scanner.nextInt();
 					break;
 				}
 			} else {
@@ -139,9 +150,6 @@ public class SessionSimulation {
 					break;
 				case 3: //Pay Via Coin
 					sessionSimulation.payViaCoin();
-					break;
-				case 4: //Attendant Screen
-					//attendant
 					break;
 				case -1: //Exit
 					System.out.println("Exiting System");
@@ -255,6 +263,7 @@ public class SessionSimulation {
 					session.subAmountDue(denom.intValue());
 					if(session.getAmountDue() <= 0) {
 						System.out.println("Fully paid amount");
+						session.getOrderItem().clear();
 						return;
 					}
 					System.out.println("Amount due remaining : " + session.getAmountDue());
