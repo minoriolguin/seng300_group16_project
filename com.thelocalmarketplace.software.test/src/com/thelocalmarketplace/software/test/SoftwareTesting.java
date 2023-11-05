@@ -4,7 +4,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.io.ByteArrayInputStream;
 import java.math.BigDecimal;
+
+//import java.math.BigDecimal;
 
 //import java.io.IOException;
 import java.util.ArrayList;
@@ -214,10 +217,93 @@ public class SoftwareTesting {
 	//Testing for SessionSimulation class
 
 	//
-//	@Test // Testing that promptEnterToContinue runs when user input is \"ENTER"\
-//	public void promptEnterToContinueTestEnter() {
-//		sessionSimulation.promptEnterToContinue();
-//	}
+	@Test // Testing that promptEnterToContinue runs when user input is \"ENTER"\
+	public void promptEnterToContinueTestEnter() {
+		String simulatedInput = "\n";
+        ByteArrayInputStream in = new ByteArrayInputStream(simulatedInput.getBytes());
+        System.setIn(in);
+        
+        sessionSimulation.promptEnterToContinue();
+	}
+	
+	@Test // Testing that promptEnterToContinue runs when user input is \"ENTER"\
+	public void scanBarcodedProductTestNullBarcode() {
+		String simulatedInput = "\n";
+        ByteArrayInputStream in = new ByteArrayInputStream(simulatedInput.getBytes());
+        System.setIn(in);
+        
+        sessionSimulation.scanBarcodedProduct(testBarcode);
+	}
+	
+	@Test // Testing that promptEnterToContinue runs when user input is \"ENTER"\
+	public void scanBarcodedProductTestValidBarcode() {
+		System.out.println("here");
+		String simulatedInput = "\nyes\n";
+        ByteArrayInputStream in = new ByteArrayInputStream(simulatedInput.getBytes());
+        System.setIn(in);
+
+		testDatabase.addBarcodedProductToDatabase(testBarcodedProduct);
+
+        sessionSimulation.scanBarcodedProduct(testBarcode);
+	}
+	
+	@Test // Testing when user inputs '1' in main
+	public void promptMainWhen1Pressed() {
+		String simulatedInput = "\n1\n";
+        ByteArrayInputStream in = new ByteArrayInputStream(simulatedInput.getBytes());
+        System.setIn(in);
+        
+		SessionSimulation.main(new String[0]);
+	}
+	
+	@Test // Testing when user inputs '2' in main
+	public void promptMainWhen2Pressed() {
+		String simulatedInput = "\n2\n2.0\n";
+        ByteArrayInputStream in = new ByteArrayInputStream(simulatedInput.getBytes());
+        System.setIn(in);
+        
+		SessionSimulation.main(new String[0]);
+	}
+	
+	@Test // Testing when user inputs '3' in main
+	public void promptMainWhen3Pressed() {
+		String simulatedInput = "\n3\n";
+        ByteArrayInputStream in = new ByteArrayInputStream(simulatedInput.getBytes());
+        System.setIn(in);
+        
+		sessionSimulation.main(new String[0]);
+	}
+	
+	@Test // Testing when user inputs '4' in main
+	public void promptMainWhen4Pressed() {
+		String simulatedInput = "\n4\n";
+        ByteArrayInputStream in = new ByteArrayInputStream(simulatedInput.getBytes());
+        System.setIn(in);
+        
+		SessionSimulation.main(new String[0]);
+	}
+	
+	@Test // Testing when user inputs '-1' in main
+	public void promptMainWhenMinus1Pressed() {
+		String simulatedInput = "\n-1\n";
+        ByteArrayInputStream in = new ByteArrayInputStream(simulatedInput.getBytes());
+        System.setIn(in);
+        
+		SessionSimulation.main(new String[0]);
+	}
+	
+	@Test // Test
+	public void testActivateSessionWhenActive() {
+		session.activate();
+		sessionSimulation.activateSession();
+	}
+	
+	@Test // Test
+	public void testActivateSessionWhenInactive() {
+		session.deactivate();
+		sessionSimulation.activateSession();
+//		assertTrue(session.activate());
+	}
 	
 //	@Test(expected = IOException.class)
 //	// Testing that promptEnterToContinue runs when user input is \"ENTER"\

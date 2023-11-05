@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import com.jjjwelectronics.scanner.BarcodedItem;
 import com.thelocalmarketplace.hardware.BarcodedProduct;
-
 /*
  * StartSession controls whether the SelfCheckoutStation is in an active state ready for customer interaction
  * 
