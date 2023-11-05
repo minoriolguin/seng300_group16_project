@@ -214,30 +214,7 @@ public class SessionSimulation {
 				}
 				break;
 			case "NO":
-          
 				System.out.println(product.getDescription() + " was not added to bagging area");
-
-				if(discrepancy.WeightDiscrepancyMessage(selfCheckoutStation, product) == "Add") {
-					item = new BarcodedItem(product.getBarcode(), new Mass(product.getExpectedWeight()));
-					selfCheckoutStation.baggingArea.addAnItem(item);
-					session.newOrderItem(item);
-					System.out.println(product.getDescription() + " was added to bagging area");
-						//check weight discrepancy
-					
-					session.addTotalExpectedWeight(product.getExpectedWeight());
-					session.addAmountDue(product.getPrice());
-					totalExpectedMass = new Mass(session.getTotalExpectedWeight());
-					try {
-						int diff = totalExpectedMass.inGrams().compareTo(selfCheckoutStation.baggingArea.getCurrentMassOnTheScale().inGrams());
-						if(diff != 0) {
-							session.setWeightDiscrepancy(product, null);
-							System.out.println("Weight discrepancy detected");
-						}
-					} catch (OverloadedDevice e) {
-						
-					}
-				}
-				
 				break;
 			default:
 				System.out.println("Invalid option. " + product.getDescription() + " not added to bagging area");
