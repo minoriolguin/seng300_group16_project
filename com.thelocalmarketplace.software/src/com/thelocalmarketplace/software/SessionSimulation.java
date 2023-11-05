@@ -35,7 +35,6 @@ public class SessionSimulation {
 	private static SelfCheckoutStation selfCheckoutStation;
 
 	private static SessionSimulation sessionSimulation;
-	//	sessionSimulation.setUpSessionSimulation();
 
 	private static LocalMarketPlaceDatabase database;
 	
@@ -102,13 +101,15 @@ public class SessionSimulation {
 
 		boolean loop = true;
 		while(loop) {
-			if(session != null && session.hasWeightDiscrepancy()) {
+			if(session != null && session.getWeightDiscrepancy() != null && session.hasWeightDiscrepancy()) {
 				System.out.print("\n============================\n"
 								 + "Weight Discrepancy has been detected\n"
+								 + "Product: " + session.getWeightDiscrepancy().getProduct().getDescription() + "caused discrepancy\n"
+								 + "\tHas weight " + session.getWeightDiscrepancy().getWeight() + ", was expecting " + session.getTotalExpectedWeight() + "\n\n"
 								 + "\t 1. Add/Remove item\n"
 								 + "\t 2. Do-Not-Bag Request\n"
 								 + "\t 3. Attendant Approval\n"
-								 + "\t-1. Exit"
+								 + "\t-1. Exit\n"
 								 + "Choice: ");
 				int wChoice = scanner.nextInt();
 				switch (wChoice) {
@@ -191,15 +192,16 @@ public class SessionSimulation {
 				selfCheckoutStation.baggingArea.addAnItem(item);
 				session.newOrderItem(item);
 				System.out.println(product.getDescription() + " was added to bagging area");
-					//check weight discrepancy
 				
 				session.addTotalExpectedWeight(product.getExpectedWeight());
 				session.addAmountDue(product.getPrice());
 				Mass totalExpectedMass = new Mass(session.getTotalExpectedWeight());
+
 				try {
 					int diff = totalExpectedMass.inGrams().compareTo(selfCheckoutStation.baggingArea.getCurrentMassOnTheScale().inGrams());
 					if(diff != 0) {
-						session.setWeightDiscrepancy();
+						System.out.println("Test: " + totalExpectedMass + "/" + session.getTotalExpectedWeight() + " : " + selfCheckoutStation.baggingArea.getCurrentMassOnTheScale().inGrams());
+						session.setWeightDiscrepancy(product, selfCheckoutStation.baggingArea.getCurrentMassOnTheScale().inGrams());
 						System.out.println("Weight discrepancy detected");
 					}
 				} catch (OverloadedDevice e) {
@@ -207,6 +209,9 @@ public class SessionSimulation {
 				}
 				break;
 			case "NO":
+          
+				System.out.println(product.getDescription() + " was not added to bagging area");
+
 				if(discrepancy.WeightDiscrepancyMessage(selfCheckoutStation, product) == "Add") {
 					item = new BarcodedItem(product.getBarcode(), new Mass(product.getExpectedWeight()));
 					selfCheckoutStation.baggingArea.addAnItem(item);

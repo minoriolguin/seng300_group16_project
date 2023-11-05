@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.math.BigDecimal;
+
 import java.util.ArrayList;
 
 import org.junit.Before;
@@ -135,6 +137,7 @@ public class SoftwareTesting {
 	//Test to see if setWeightDiscrepancy returns correct boolean value true
 	@Test
 	public void setWeightDiscrepancyTest() {
+		session.setWeightDiscrepancy(null, new BigDecimal(0));
 		session.setWeightDiscrepancy();
 		assertTrue(session.hasWeightDiscrepancy());
 	}
