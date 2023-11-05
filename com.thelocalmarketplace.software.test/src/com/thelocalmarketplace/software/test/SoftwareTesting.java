@@ -302,7 +302,6 @@ public class SoftwareTesting {
 	public void testActivateSessionWhenInactive() {
 		session.deactivate();
 		sessionSimulation.activateSession();
-//		assertTrue(session.activate());
 	}
 	
 //	@Test(expected = IOException.class)

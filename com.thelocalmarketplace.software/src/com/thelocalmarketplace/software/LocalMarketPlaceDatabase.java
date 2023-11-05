@@ -84,7 +84,6 @@ public class LocalMarketPlaceDatabase {
 		}	
 	}
 
-	//needed?
 	public void removeBarcodedProductFromInventory(BarcodedProduct barcodedProduct, int amountRemoved) {
 		INVENTORY.put(barcodedProduct, INVENTORY.get(barcodedProduct) - amountRemoved);
 	}
