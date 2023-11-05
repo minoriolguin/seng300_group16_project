@@ -2,8 +2,6 @@ package com.thelocalmarketplace.software;
 
 import com.thelocalmarketplace.hardware.SelfCheckoutStation;
 import com.thelocalmarketplace.hardware.BarcodedProduct;
-import com.jjjwelectronics.scanner.Barcode;
-import java.math.BigDecimal;
 
 import java.util.Scanner;
 /*
@@ -18,7 +16,7 @@ import java.util.Scanner;
  * */
 
 public class WeightDiscrepancy {
-	
+
 	public String WeightDiscrepancyMessage(SelfCheckoutStation selfCheckoutStation, BarcodedProduct product) {
 		String choice="NO";
 		String finChoice = "";

@@ -39,7 +39,7 @@ public class SessionSimulation {
 
 	private static Scanner scanner;
 	
-	WeightDiscrepancy discrepancy = new WeightDiscrepancy(null, null);
+	WeightDiscrepancy discrepancy;
 
 	public void promptEnterToContinue(){
 
