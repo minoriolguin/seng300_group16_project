@@ -3,6 +3,7 @@ package com.thelocalmarketplace.software;
 import com.thelocalmarketplace.hardware.SelfCheckoutStation;
 import com.thelocalmarketplace.hardware.BarcodedProduct;
 
+import java.math.BigDecimal;
 import java.util.Scanner;
 /*
  * 

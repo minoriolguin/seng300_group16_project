@@ -1,0 +1,467 @@
+commit 53e4440bf936cbf249764f6cb73db32ea35aba3c
+Merge: 13c7601 824b848
+Author: Minori Olguin <140556108+minoriolguin@users.noreply.github.com>
+Date:   Sat Nov 4 18:34:51 2023 -0600
+
+    Merge pull request #24 from minoriolguin/software-testing-updated-to-include-Local_Marketplace_Database-testing
+    
+    bug-fixes-in-session-simulation
+
+commit 824b848c7e13ecd6c8152f60a826b86eba91da47
+Merge: 9d26f9d 13c7601
+Author: Minori Olguin <140556108+minoriolguin@users.noreply.github.com>
+Date:   Sat Nov 4 18:34:43 2023 -0600
+
+    Merge branch 'main' into software-testing-updated-to-include-Local_Marketplace_Database-testing
+
+commit 9d26f9ddc621efa2d7762f08bda3767cff415ef6
+Author: Minori Olguin <minoriiolguin@gmail.com>
+Date:   Sat Nov 4 18:32:53 2023 -0600
+
+    bug-fixes-in-session-simulation
+
+commit 13c76015b0f1a45ad4bca19abb5c8941b89f488d
+Author: Minori Olguin <minoriiolguin@gmail.com>
+Date:   Sat Nov 4 18:23:01 2023 -0600
+
+    minor changes to software testing small edits to SessionSimulation and Deleting unnecessary comments and files
+
+commit 6c5964de6fca454fa0e89bfc4d8b946e727a86ec
+Merge: a2103a6 668e636
+Author: Minori Olguin <140556108+minoriolguin@users.noreply.github.com>
+Date:   Sat Nov 4 18:10:41 2023 -0600
+
+    Merge pull request #23 from minoriolguin/Weight-Discrepancy
+    
+    New layout for Weight Discrepancy
+
+commit 668e636f0d2832394cbde54e66a1e1aad9415db9
+Merge: 7b4a72c a2103a6
+Author: Minori Olguin <140556108+minoriolguin@users.noreply.github.com>
+Date:   Sat Nov 4 18:10:34 2023 -0600
+
+    Merge branch 'main' into Weight-Discrepancy
+
+commit 7b4a72c594146d8012625fc0cb194d2d08eb1ddc
+Author: Jack Graver <jackhgraver@gmail.com>
+Date:   Sat Nov 4 17:25:46 2023 -0600
+
+    New layout for Weight Discrepancy
+    
+    Added some new layout for weight discrepancy for pushing out better information when a discrepancy is found
+
+commit a2103a68d48ebbbbb66b91681b562378d8ff1f86
+Merge: 5b43ea5 8bf79e0
+Author: Minori Olguin <140556108+minoriolguin@users.noreply.github.com>
+Date:   Sat Nov 4 17:02:51 2023 -0600
+
+    Merge pull request #22 from minoriolguin/Error-Handling
+    
+    Error Handling
+
+commit 8bf79e09c0954584d18f0438fb8c6939d9090823
+Author: Jack Graver <jackhgraver@gmail.com>
+Date:   Sat Nov 4 16:59:02 2023 -0600
+
+    Error Handling
+    
+    Added some error handling for testing
+
+commit 5b43ea56d1a7820eba98575c2218c7bcc4c30298
+Merge: 6f2c6f6 73d873c
+Author: Jack Graver <46544214+JackGraver@users.noreply.github.com>
+Date:   Sat Nov 4 16:14:14 2023 -0600
+
+    Merge pull request #21 from minoriolguin/software-testing-updated-to-include-Local_Marketplace_Database-testing
+    
+    Updated software testing to include testing for Local Marketplace Dat…
+
+commit 73d873ccc783a91e2a994b3cf1e797f289774037
+Author: Minori Olguin <minoriiolguin@gmail.com>
+Date:   Sat Nov 4 16:12:55 2023 -0600
+
+    Updated software testing to include testing for Local Marketplace Database
+
+commit 6f2c6f62d490b5d96b1836dfad8b29f61eb2ee11
+Merge: ca96889 bfa4c2e
+Author: Jack Graver <46544214+JackGraver@users.noreply.github.com>
+Date:   Sat Nov 4 15:29:02 2023 -0600
+
+    Merge pull request #20 from minoriolguin/software-testing-created-session-tests-completed
+    
+    Software testing file created and testing completed for session class
+
+commit bfa4c2e7c2a3340b34b4395b11689da2d73b9eef
+Author: Minori Olguin <minoriiolguin@gmail.com>
+Date:   Sat Nov 4 15:26:25 2023 -0600
+
+    Software testing file created and testing completed for session class
+
+commit ca96889d9a01ef7d4c299fabf09897b522c2cf8d
+Merge: 980b240 eefce4b
+Author: Minori Olguin <140556108+minoriolguin@users.noreply.github.com>
+Date:   Sat Nov 4 13:34:27 2023 -0600
+
+    Merge pull request #19 from minoriolguin/experementing-with-weight-discrepancy
+    
+    Added some functionality to Weight Discrepancy
+
+commit eefce4b661c753f43d2ecd3f91c403da833c53b5
+Author: Firdovsi Aliyev <alievfirdovsi0@gmail.com>
+Date:   Sat Nov 4 05:23:10 2023 -0600
+
+    Addded some functionality to Weight Discrepance
+    
+    Removed some comments
+    Changed mcg to grams
+    Added some functionality to Weight Discrepancy (If the Customer decides not to bag the item, then it will force him to decide whether to keep it or remove the item)
+
+commit 980b240c9baace5afb76942bd68a20cebfc97a11
+Merge: bfb2355 8f8d330
+Author: Jack Graver <46544214+JackGraver@users.noreply.github.com>
+Date:   Sat Nov 4 01:58:36 2023 -0600
+
+    Merge pull request #18 from minoriolguin/Weight-Discrepancy
+    
+    Weight Discrepancy and Menu
+
+commit 8f8d330cdd71758a480a996c140312cfae10f4d7
+Author: Jack Graver <jackhgraver@gmail.com>
+Date:   Sat Nov 4 01:58:12 2023 -0600
+
+    Weight Discrepancy and Menu
+    
+    Added base functionality for weight discrepancy
+    Changed some menu looks
+    Stopped bad barcodes from causing null exception in scans
+
+commit bfb23551da62ce2a8b5ce810542f3d1c0ef7bcda
+Merge: 1823495 10c45d6
+Author: Jack Graver <46544214+JackGraver@users.noreply.github.com>
+Date:   Sat Nov 4 01:23:51 2023 -0600
+
+    Merge pull request #17 from minoriolguin/Fir-currentMass-and-weight
+    
+    Cleaned up comments
+
+commit 10c45d6b4f3b3b2ba3b209cff8620360d5a32c50
+Merge: 9e2a549 1823495
+Author: Jack Graver <46544214+JackGraver@users.noreply.github.com>
+Date:   Sat Nov 4 01:23:44 2023 -0600
+
+    Merge branch 'main' into Fir-currentMass-and-weight
+
+commit 9e2a549c706eb1d4a9ece8e775e88545e68aeeda
+Author: Firdovsi Aliyev <alievfirdovsi0@gmail.com>
+Date:   Sat Nov 4 01:10:35 2023 -0600
+
+    Cleaned up
+    
+    Removed a lot of commented code
+
+commit 1823495efcf7cb0d1b20bcf7620d570c6a8de883
+Merge: 68a47a8 86de27c
+Author: Minori Olguin <140556108+minoriolguin@users.noreply.github.com>
+Date:   Sat Nov 4 01:01:04 2023 -0600
+
+    Merge pull request #16 from minoriolguin/Jack
+    
+    Add Item and Pay Via Coin Functionality
+
+commit 86de27cb3a0eb5a7bd337e01ffff9f86acf3db70
+Author: Jack Graver <jackhgraver@gmail.com>
+Date:   Sat Nov 4 00:42:46 2023 -0600
+
+    Add Item and Pay Via Coin Functionality
+    
+    Added functionality for scanning/adding an item
+    Added functionality for paying for items after scanned
+
+commit 68a47a82f806340ba3585bc1c3d54f7559a4e262
+Merge: 7ca05a2 d6b7e83
+Author: Jack Graver <46544214+JackGraver@users.noreply.github.com>
+Date:   Fri Nov 3 21:36:18 2023 -0600
+
+    Merge pull request #15 from minoriolguin/Jack
+    
+    Singleton Database and Session data
+
+commit d6b7e83b36e4d740ceda714582dc161ca01edc44
+Author: Jack Graver <jackhgraver@gmail.com>
+Date:   Fri Nov 3 21:35:53 2023 -0600
+
+    Singleton Database and Session data
+    
+    Changed database class to a singleton style so we can only access the one database across the whole system
+    Added data for scanned barcoded items into session
+
+commit 7ca05a25e2724ec05da6901308377f10b28b2989
+Merge: ddb2d72 5a56a24
+Author: Jack Graver <46544214+JackGraver@users.noreply.github.com>
+Date:   Fri Nov 3 21:19:24 2023 -0600
+
+    Merge pull request #14 from minoriolguin/Jack
+    
+    Fixes
+
+commit 5a56a24133301b654be01a921c6ed940a3667312
+Author: Jack Graver <jackhgraver@gmail.com>
+Date:   Fri Nov 3 21:18:43 2023 -0600
+
+    Fixes
+    
+    Small fixes
+
+commit ddb2d729d2dd8228317862d6b99fb2304bd94161
+Merge: ee5c016 d037184
+Author: Jack Graver <46544214+JackGraver@users.noreply.github.com>
+Date:   Fri Nov 3 21:15:13 2023 -0600
+
+    Merge pull request #13 from minoriolguin/Jack
+    
+    Session Changes
+
+commit d03718468cbb0c9785eefcba80d01d115d1b1a09
+Merge: e06227b ee5c016
+Author: Jack Graver <46544214+JackGraver@users.noreply.github.com>
+Date:   Fri Nov 3 21:15:05 2023 -0600
+
+    Merge branch 'main' into Jack
+
+commit e06227b3729b1bf0dc2f0f6c39ccd4f126f09144
+Author: Jack Graver <jackhgraver@gmail.com>
+Date:   Fri Nov 3 21:04:21 2023 -0600
+
+    Session Changes
+    
+    Changed the design of Session, now serves as a singleton, and we can only activate the single instance of it. Can also more evidently show off trying to start multiple sessions.
+
+commit ee5c016fde028098db52e96331fe9816e6638f6b
+Merge: 2b51e6a 8ecafb5
+Author: Minori Olguin <140556108+minoriolguin@users.noreply.github.com>
+Date:   Fri Nov 3 16:07:09 2023 -0600
+
+    Merge pull request #12 from minoriolguin/ignore-ds-store-and-metadata-files
+    
+    Update .gitignore
+
+commit 8ecafb5eeadfef45085d5b61902de5411989f7b2
+Author: Minori Olguin <minoriiolguin@gmail.com>
+Date:   Fri Nov 3 16:01:28 2023 -0600
+
+    Revert "Revert "Update .gitignore""
+    
+    This reverts commit a85ebfe43090126466e7b5ccfa047f73be3b22b3.
+
+commit a85ebfe43090126466e7b5ccfa047f73be3b22b3
+Author: Minori Olguin <minoriiolguin@gmail.com>
+Date:   Fri Nov 3 15:59:29 2023 -0600
+
+    Revert "Update .gitignore"
+    
+    This reverts commit ad41f1b9edb17c7bac1322e707c576da4089a30a.
+
+commit ad41f1b9edb17c7bac1322e707c576da4089a30a
+Author: Minori Olguin <minoriiolguin@gmail.com>
+Date:   Fri Nov 3 15:55:28 2023 -0600
+
+    Update .gitignore
+    
+    Update .gitignore to ignore .metadata files and .ds_store files
+    
+    .ds_store files are used to display items on a mac
+    
+    .metadata files are used for local building with eclipse
+
+commit 2b51e6a4fdd99fdef08381fcf159ce219bbf7e2a
+Merge: edc3816 38c2f51
+Author: Minori Olguin <140556108+minoriolguin@users.noreply.github.com>
+Date:   Fri Nov 3 15:42:02 2023 -0600
+
+    Merge pull request #11 from minoriolguin/push-missing-files
+    
+    minor changes to price of items, changed to include decimal places
+
+commit 38c2f51186fbd6b2838fb59193f2043a7518962e
+Merge: dbaa044 edc3816
+Author: Minori Olguin <140556108+minoriolguin@users.noreply.github.com>
+Date:   Fri Nov 3 15:41:54 2023 -0600
+
+    Merge branch 'main' into push-missing-files
+
+commit dbaa0443e196c11aaae960b61a7cd5aa0d74c4cd
+Author: Minori Olguin <minoriiolguin@gmail.com>
+Date:   Fri Nov 3 15:35:16 2023 -0600
+
+    Update SessionSimulation.java
+
+commit edc38165d86f95c4ccfc935c31531c838875649d
+Merge: 53e23bd 3f6bb93
+Author: Minori Olguin <140556108+minoriolguin@users.noreply.github.com>
+Date:   Fri Nov 3 15:31:26 2023 -0600
+
+    Merge pull request #10 from minoriolguin/Fir-currentMass-and-weight
+    
+    Update SessionSimulation.java
+
+commit 3f6bb9335c7e46f439f75837813a1302f0c2f354
+Author: Firdovsi Aliyev <alievfirdovsi0@gmail.com>
+Date:   Fri Nov 3 15:28:22 2023 -0600
+
+    Update SessionSimulation.java
+    
+    Added totalExpetedMass and it checks whether there is a weightDiscrepancy
+
+commit 53e23bd2752c1f95723a48b62d6c4d15b7170d52
+Merge: fc3e5bd 00c033f
+Author: Minori Olguin <140556108+minoriolguin@users.noreply.github.com>
+Date:   Fri Nov 3 15:22:29 2023 -0600
+
+    Merge pull request #9 from minoriolguin/Jack
+    
+    Cleaned up pay via coin functionality
+
+commit 00c033fa366c59345ba1c048f1c41b17f7fdffd6
+Author: Jack Graver <jackhgraver@gmail.com>
+Date:   Fri Nov 3 15:12:54 2023 -0600
+
+    Cleaned up pay via coin functionality
+    
+    Created more denominations, cleaned up input and paying functionality with coin
+
+commit fc3e5bd4b9f15c380090d0056f39870e0789e5ad
+Merge: ec916f1 55251f0
+Author: Minori Olguin <140556108+minoriolguin@users.noreply.github.com>
+Date:   Fri Nov 3 14:36:39 2023 -0600
+
+    Merge pull request #8 from minoriolguin/Jack
+    
+    Add Item Functionality
+
+commit 55251f05dfa98448cc164d6154b221ef51e730b6
+Author: Jack Graver <jackhgraver@gmail.com>
+Date:   Fri Nov 3 14:34:03 2023 -0600
+
+    Add Item Functionality
+    
+    Added functionality for getting input barcode input for user.
+    Cleaned up scan() method after it was moved to simulation class
+
+commit ec916f1d1b1bc814ece53f04338b96b842575b97
+Merge: a76a62a 1398833
+Author: Jack Graver <46544214+JackGraver@users.noreply.github.com>
+Date:   Fri Nov 3 13:59:35 2023 -0600
+
+    Merge pull request #7 from minoriolguin/Jack
+    
+    Moved Scan functionality to Simulation
+
+commit 1398833200fc94e29ab9a27fc18e8b099895bfc6
+Author: Jack Graver <jackhgraver@gmail.com>
+Date:   Fri Nov 3 13:58:14 2023 -0600
+
+    Moved Scan functionality to Simulation
+    
+    Added Scan functionality from its own class to the simulation class
+
+commit a76a62ade3dab895a275c7b193fdf13f68728787
+Merge: 8cb3df5 2699dc5
+Author: Minori Olguin <140556108+minoriolguin@users.noreply.github.com>
+Date:   Fri Nov 3 13:13:54 2023 -0600
+
+    Merge pull request #5 from minoriolguin/Added-new-class-for-Scanning1.0
+    
+    AddItemByBarcodeScan 1.0
+
+commit 2699dc5485aa1a6656e1d73bb97a5a193ad5ddf1
+Author: Firdovsi Aliyev <alievfirdovsi0@gmail.com>
+Date:   Fri Nov 3 13:11:23 2023 -0600
+
+    AddItemByBarcodeScan 1.0
+    
+    Set up the base for the Scan
+    Need to fix the issue with the scan method, as it takes in BarcodedItem, not BarcodedProduct
+
+commit 8cb3df555c7c6367b91d231311ae34c07e067a3f
+Merge: 70c5eed 599e067
+Author: Minori Olguin <140556108+minoriolguin@users.noreply.github.com>
+Date:   Fri Nov 3 11:16:13 2023 -0600
+
+    Merge pull request #4 from minoriolguin/push-missing-files
+    
+    push missing files
+
+commit 599e067341742aa1ff8d13cbc5db187dd79c3a32
+Author: Minori Olguin <minoriiolguin@gmail.com>
+Date:   Fri Nov 3 11:15:42 2023 -0600
+
+    push missing files
+
+commit 70c5eede4dba124add6a77480a1d9cbb094de9cd
+Author: Minori Olguin <140556108+minoriolguin@users.noreply.github.com>
+Date:   Fri Nov 3 10:42:36 2023 -0600
+
+    Update README.md
+
+commit 93e68ba21f11819f7c4fcbe3c6b73a0f41c77474
+Author: Minori Olguin <140556108+minoriolguin@users.noreply.github.com>
+Date:   Fri Nov 3 09:58:42 2023 -0600
+
+    Update README.md
+
+commit 61da6c0a651f1565e93cbd7e4d83a5b71dcebfd1
+Merge: 5950efc 55557d3
+Author: Jack Graver <46544214+JackGraver@users.noreply.github.com>
+Date:   Fri Nov 3 00:39:25 2023 -0600
+
+    Merge pull request #3 from minoriolguin/create-local-marketplace-database-and-update-session-simulation
+    
+    local marketplace database created and session simulation updated
+
+commit 5950efcfdbbcb60061e573155d32b9055afed6df
+Author: Minori Olguin <140556108+minoriolguin@users.noreply.github.com>
+Date:   Thu Nov 2 23:23:03 2023 -0600
+
+    Update README.md
+
+commit 55557d3c96757700b1218795661baf1f4a760542
+Author: Minori Olguin <minoriiolguin@gmail.com>
+Date:   Thu Nov 2 23:17:19 2023 -0600
+
+    local market place database created and session simulation updated
+
+commit 806e4a26176a57c945b3b4235c4b13f93b43cc53
+Merge: 736e022 158c141
+Author: Minori Olguin <140556108+minoriolguin@users.noreply.github.com>
+Date:   Wed Nov 1 17:06:52 2023 -0600
+
+    Merge pull request #2 from minoriolguin/init-start-session-and-update-session-to-session-simulation
+    
+    updated session and created start session code
+
+commit 158c1413df46afb9990aee7d5bec16616fc47659
+Author: Minori Olguin <minoriiolguin@gmail.com>
+Date:   Wed Nov 1 17:03:55 2023 -0600
+
+    updated session and created start session code
+
+commit 736e0224ca0049c3cd8f2caad87544b90b9c7c36
+Merge: 9cadf4d a110c07
+Author: Minori Olguin <140556108+minoriolguin@users.noreply.github.com>
+Date:   Fri Oct 27 14:44:54 2023 -0600
+
+    Merge pull request #1 from minoriolguin/init-repo
+    
+    adding initial files for repo
+
+commit a110c07719ab448b9544d6428482299506fed585
+Author: Minori Olguin <minoriiolguin@gmail.com>
+Date:   Fri Oct 27 14:42:39 2023 -0600
+
+    adding initial files for repo
+
+commit 9cadf4d9657ec951f66a13bd629c44e644442365
+Author: Minori Olguin <minoriiolguin@gmail.com>
+Date:   Fri Oct 27 14:29:58 2023 -0600
+
+    Initial commit
