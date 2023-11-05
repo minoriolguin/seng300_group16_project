@@ -3,17 +3,14 @@ package com.thelocalmarketplace.software;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Scanner;
 
-import com.jjjwelectronics.Item;
 import com.jjjwelectronics.Mass;
 import com.jjjwelectronics.Numeral;
 import com.jjjwelectronics.OverloadedDevice;
 import com.jjjwelectronics.scanner.Barcode;
 import com.jjjwelectronics.scanner.BarcodedItem;
 import com.thelocalmarketplace.hardware.BarcodedProduct;
-import com.thelocalmarketplace.hardware.Product;
 import com.thelocalmarketplace.hardware.SelfCheckoutStation;
 
 import powerutility.PowerGrid;
@@ -42,7 +39,7 @@ public class SessionSimulation {
 
 	private static Scanner scanner;
 	
-	WeightDiscrepancy discrepancy = new WeightDiscrepancy();
+	WeightDiscrepancy discrepancy = new WeightDiscrepancy(null, null);
 
 	public void promptEnterToContinue(){
 
@@ -138,7 +135,7 @@ public class SessionSimulation {
 						i++;
 					}
 					Barcode barcode = new Barcode(barcodeNumeral);
-					sessionSimulation.scan(barcode);
+					sessionSimulation.scanBarcodedProduct(barcode);
 					break;
 				case 3: //Pay Via Coin
 					sessionSimulation.payViaCoin();
@@ -174,7 +171,7 @@ public class SessionSimulation {
 	}
 
 
-	public void scan(Barcode barcode) {
+	public void scanBarcodedProduct(Barcode barcode) {
 		
 		//3. Determines the characteristics (weight and cost) of the product associated with the barcode.
 		BarcodedProduct product = database.getBarcodedProductFromDatabase(barcode);
@@ -225,7 +222,7 @@ public class SessionSimulation {
 					try {
 						int diff = totalExpectedMass.inGrams().compareTo(selfCheckoutStation.baggingArea.getCurrentMassOnTheScale().inGrams());
 						if(diff != 0) {
-							session.setWeightDiscrepancy();
+							session.setWeightDiscrepancy(product, null);
 							System.out.println("Weight discrepancy detected");
 						}
 					} catch (OverloadedDevice e) {

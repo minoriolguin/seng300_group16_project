@@ -18,8 +18,7 @@ import java.util.Scanner;
  * */
 
 public class WeightDiscrepancy {
-	public void WeightDiscrepancy() {
-	}
+	
 	public String WeightDiscrepancyMessage(SelfCheckoutStation selfCheckoutStation, BarcodedProduct product) {
 		String choice="NO";
 		String finChoice = "";
@@ -62,5 +61,6 @@ public class WeightDiscrepancy {
 	public BigDecimal getWeight() {
 		return weight;
 	}
+}
 	
 

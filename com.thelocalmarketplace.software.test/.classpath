@@ -9,5 +9,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/com.thelocalmarketplace.software"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/com.thelocalmarketplace.hardware_0.1"/>
+	<classpathentry kind="lib" path="/Users/minoriolguin/Downloads/mockito-1.9.5.zip"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
