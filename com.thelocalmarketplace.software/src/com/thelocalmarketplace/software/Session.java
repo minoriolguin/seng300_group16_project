@@ -100,4 +100,5 @@ public class Session {
     public WeightDiscrepancy getWeightDiscrepancy() {
     	return weightDiscrepancy;
     }
+
 }

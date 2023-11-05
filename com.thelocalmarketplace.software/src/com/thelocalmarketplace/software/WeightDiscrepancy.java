@@ -3,8 +3,8 @@ package com.thelocalmarketplace.software;
 import com.thelocalmarketplace.hardware.SelfCheckoutStation;
 import com.thelocalmarketplace.hardware.BarcodedProduct;
 import com.jjjwelectronics.scanner.Barcode;
-
 import java.math.BigDecimal;
+
 import java.util.Scanner;
 /*
  * 
@@ -18,6 +18,34 @@ import java.util.Scanner;
  * */
 
 public class WeightDiscrepancy {
+	public void WeightDiscrepancy() {
+	}
+	public String WeightDiscrepancyMessage(SelfCheckoutStation selfCheckoutStation, BarcodedProduct product) {
+		String choice="NO";
+		String finChoice = "";
+		Scanner scanner = new Scanner(System.in);
+		System.out.println(product.getDescription() + " was not added to bagging area");
+		while(!choice.equals("YES")) {
+			System.out.println("There is a weight discrepancy, as you scanned an item and didn't put it in the bagging area \n"
+					+ "Place item in the bagging Area (Yes/No): ");
+			choice = scanner.nextLine().toUpperCase();
+			if(choice.equals("NO")) { //No means that a customer is not willing to put the item in the bagging are (he might have changed his decision)
+				System.out.println("Do you want to cancel this Item? (Yes/No) [If yes, then the station will continue as usual, else you have to put it in the bagging area]");
+				finChoice = scanner.nextLine().toUpperCase();
+				System.out.println("finChoice: " + finChoice);
+				if(finChoice.equals("YES")){
+					return "Cancel";
+				}
+				else {
+					continue;
+				}
+			} else {
+				return "Add";
+			}
+			
+		}
+		return "Cancel";
+	}
 	
 	private BarcodedProduct product;
 	private BigDecimal weight;
@@ -35,31 +63,4 @@ public class WeightDiscrepancy {
 		return weight;
 	}
 	
-//	public String WeightDiscrepancyMessage(SelfCheckoutStation selfCheckoutStation, BarcodedProduct product) {
-//		String choice="NO";
-//		String finChoice = "";
-//		Scanner scanner = new Scanner(System.in);
-//		System.out.println(product.getDescription() + " was not added to bagging area");
-//		while(!choice.equals("YES")) {
-//			System.out.println("There is a weight discrepancy, as you scanned an item and didn't put it in the bagging area \n"
-//					+ "Place item in the bagging Area (Yes/No): ");
-//			choice = scanner.nextLine().toUpperCase();
-//			if(choice.equals("NO")) { //No means that a customer is not willing to put the item in the bagging are (he might have changed his decision)
-//				System.out.println("Do you want to cancel this Item? (Yes/No) [If yes, then the station will continue as usual, else you have to put it in the bagging area]");
-//				finChoice = scanner.nextLine().toUpperCase();
-//				System.out.println("finChoice: " + finChoice);
-//				if(finChoice.equals("YES")){
-//					return "Cancel";
-//				}
-//				else {
-//					continue;
-//				}
-//			} else {
-//				return "Add";
-//			}
-//
-//		}
-//		return "Cancel";
-//	}
-}
 

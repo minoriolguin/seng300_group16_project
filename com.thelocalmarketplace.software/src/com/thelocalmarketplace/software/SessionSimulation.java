@@ -41,6 +41,8 @@ public class SessionSimulation {
 	private static Session session;
 
 	private static Scanner scanner;
+	
+	WeightDiscrepancy discrepancy = new WeightDiscrepancy();
 
 	public void promptEnterToContinue(){
 
@@ -207,27 +209,29 @@ public class SessionSimulation {
 				}
 				break;
 			case "NO":
+          
 				System.out.println(product.getDescription() + " was not added to bagging area");
-//				if(discrepancy.WeightDiscrepancyMessage(selfCheckoutStation, product) == "Add") {
-//					item = new BarcodedItem(product.getBarcode(), new Mass(product.getExpectedWeight()));
-//					selfCheckoutStation.baggingArea.addAnItem(item);
-//					session.newOrderItem(item);
-//					System.out.println(product.getDescription() + " was added to bagging area");
-//						//check weight discrepancy
-//					
-//					session.addTotalExpectedWeight(product.getExpectedWeight());
-//					session.addAmountDue(product.getPrice());
-//					totalExpectedMass = new Mass(session.getTotalExpectedWeight());
-//					try {
-//						int diff = totalExpectedMass.inGrams().compareTo(selfCheckoutStation.baggingArea.getCurrentMassOnTheScale().inGrams());
-//						if(diff != 0) {
-//							session.setWeightDiscrepancy();
-//							System.out.println("Weight discrepancy detected");
-//						}
-//					} catch (OverloadedDevice e) {
-//						
-//					}
-//				}
+
+				if(discrepancy.WeightDiscrepancyMessage(selfCheckoutStation, product) == "Add") {
+					item = new BarcodedItem(product.getBarcode(), new Mass(product.getExpectedWeight()));
+					selfCheckoutStation.baggingArea.addAnItem(item);
+					session.newOrderItem(item);
+					System.out.println(product.getDescription() + " was added to bagging area");
+						//check weight discrepancy
+					
+					session.addTotalExpectedWeight(product.getExpectedWeight());
+					session.addAmountDue(product.getPrice());
+					totalExpectedMass = new Mass(session.getTotalExpectedWeight());
+					try {
+						int diff = totalExpectedMass.inGrams().compareTo(selfCheckoutStation.baggingArea.getCurrentMassOnTheScale().inGrams());
+						if(diff != 0) {
+							session.setWeightDiscrepancy();
+							System.out.println("Weight discrepancy detected");
+						}
+					} catch (OverloadedDevice e) {
+						
+					}
+				}
 				
 				break;
 			default:
