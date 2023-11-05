@@ -3,17 +3,14 @@ package com.thelocalmarketplace.software;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Scanner;
 
-import com.jjjwelectronics.Item;
 import com.jjjwelectronics.Mass;
 import com.jjjwelectronics.Numeral;
 import com.jjjwelectronics.OverloadedDevice;
 import com.jjjwelectronics.scanner.Barcode;
 import com.jjjwelectronics.scanner.BarcodedItem;
 import com.thelocalmarketplace.hardware.BarcodedProduct;
-import com.thelocalmarketplace.hardware.Product;
 import com.thelocalmarketplace.hardware.SelfCheckoutStation;
 
 import powerutility.PowerGrid;
@@ -43,7 +40,7 @@ public class SessionSimulation {
 
 	private static Scanner scanner;
 	
-	WeightDiscrepancy discrepancy = new WeightDiscrepancy();
+	WeightDiscrepancy discrepancy;
 
 	public void promptEnterToContinue(){
 
@@ -176,7 +173,7 @@ public class SessionSimulation {
 	public void scan(Barcode barcode) {
 		
 		//3. Determines the characteristics (weight and cost) of the product associated with the barcode.
-		BarcodedProduct product = database.getBarcodedProductToDatabase(barcode);
+		BarcodedProduct product = database.getBarcodedProductFromDatabase(barcode);
 		if(product != null) {
 			System.out.println("The barcode (" + barcode + ") is for " + product.getDescription());
 			//5. Signals to the Customer to place the scanned item in the bagging area
